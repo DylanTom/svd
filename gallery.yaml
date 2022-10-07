@@ -1,0 +1,19 @@
+---
+group:
+  - name: Sydney Ho
+    netid: sh967
+  - name: Vanessa Fang
+    netid: vf72
+  - name: Dylan Tom
+    netid: dt425
+pm:
+  name: Anirudh Sharma
+  netid: as2844
+publish: true
+title: "The Complete Caml Calculator (CCC)"
+git-repo: "https://github.com/dylantom/svd"
+# If you have no demo screencast, replace the url string with an empty string ""
+demo-video-url: "https://www.youtube.com/watch?v=eSBybJGZoCU"
+# Write a short, attention-grabbing description of your project.
+desc: >
+  
