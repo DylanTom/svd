@@ -1,3 +1,5 @@
+open Yojson.Basic.Util
+
 (* The type representing a specific route. Requires: [from] : 3 letter code
    representing the origin, [destination] : 3 letter code representing the
    destination, [month] : 1..12, [day] : 0..31, [year] : year >= 0, [url] : link
