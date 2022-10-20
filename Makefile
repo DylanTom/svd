@@ -29,3 +29,10 @@ clean:
 	dune clean
 	rm -f svd.zip
 
+loc:
+	dune clean
+	cloc --by-file --include-lang=OCaml .
+
+locall:
+	dune clean
+	cloc .
