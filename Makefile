@@ -35,4 +35,4 @@ loc:
 
 locall:
 	dune clean
-	cloc .
+  cloc .
