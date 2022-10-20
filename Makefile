@@ -1,5 +1,3 @@
-.PHONY: test check
-
 build:
 	dune build
 
@@ -24,15 +22,19 @@ finalcheck:
 	@bash check.sh final
 
 zip:
-	rm -f adventure.zip
-	zip -r adventure.zip . -x@exclude.lst
+	rm -f svd.zip
+	zip -r svd.zip . -x@exclude.lst
 
 clean:
 	dune clean
-	rm -f adventure.zip
+	rm -f svd.zip
 
-doc:
-	dune build @doc
+loc:
+	dune clean
+	cloc --by-file --include-lang=OCaml .
 
-opendoc: doc
-	@bash opendoc.sh
+locall:
+	dune clean
+	cloc .
+
+	

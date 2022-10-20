@@ -10,10 +10,11 @@ pm:
   name: Anirudh Sharma
   netid: as2844
 publish: true
-title: "The Complete Caml Calculator (CCC)"
+title: "OCaml x Expedia (Final Name TBD)"
 git-repo: "https://github.com/dylantom/svd"
-# If you have no demo screencast, replace the url string with an empty string ""
-demo-video-url: "https://www.youtube.com/watch?v=eSBybJGZoCU"
-# Write a short, attention-grabbing description of your project.
-desc: >
+demo-video-url: ""
+desc: > 
+  Ever wanted to book a bus back home? Expedia works great for flights but what about those who want to head back to NYC or Philadelphia? 
+
+  A system in development to organize and streamline bus journeys for Cornell students.
   
