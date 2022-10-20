@@ -19,6 +19,6 @@ let search =
   let form = Page.Form.Field.set form field "module Form" in
   let* response = Agent.submit form in
   response |> Agent.HttpResponse.content
-  |> M.save_content "megabus-search-result.html"
+  |> M.save_content "./data/megabus-search-result.html"
 
 let _ = M.run (Agent.init ()) search
