@@ -21,4 +21,4 @@ let search =
   response |> Agent.HttpResponse.content
   |> M.save_content "megabus-search-result.html"
 
-(* let _ = M.run (Agent.init ()) search *)
+let _ = M.run (Agent.init ()) search
