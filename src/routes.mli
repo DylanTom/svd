@@ -3,7 +3,7 @@
 type buses
 (* The abstract type representing the routes *)
 
-val parse_json : Yojson.Basic.t -> buses
+(* val parse_json : Yojson.Basic.t -> buses
 (* [parse_json f] reads a JSON file and converts it to its representation in
    OCaml as type buses *)
 
@@ -26,4 +26,4 @@ val get_url : buses -> string
 (* [get_url r] is the URL to the route *)
 
 val price_url : buses -> (float * string) list
-(* [price_url r] is a list of prices and URLs from the JSON *)
+[price_url r] is a list of prices and URLs from the JSON *)
