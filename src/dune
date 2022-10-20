@@ -1,2 +1,3 @@
 (library
- (name svd))
+ (name svd)
+ (libraries mechaml lwt cohttp cohttp-lwt-unix core ))
