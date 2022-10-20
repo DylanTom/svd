@@ -143,7 +143,7 @@
 			"departureDateTime": "2022-10-21T14:30:00",
 			"arrivalDateTime": "2022-10-21T19:30:00",
 			"duration": "PT5H",
-			"price": 42.50,
+			"price": 44.99,
 			"origin": {
 				"cityName": "Ithaca, NY",
 				"cityId": "511",
@@ -189,7 +189,7 @@
 			"departureDateTime": "2022-10-21T14:35:00",
 			"arrivalDateTime": "2022-10-21T19:30:00",
 			"duration": "PT4H55M",
-			"price": 42.50,
+			"price": 44.99,
 			"origin": {
 				"cityName": "Ithaca, NY",
 				"cityId": "511",
@@ -235,7 +235,7 @@
 			"departureDateTime": "2022-10-21T14:50:00",
 			"arrivalDateTime": "2022-10-21T19:30:00",
 			"duration": "PT4H40M",
-			"price": 42.50,
+			"price": 44.99,
 			"origin": {
 				"cityName": "Ithaca, NY",
 				"cityId": "511",

@@ -19,6 +19,10 @@ type query = {
   wheelchairSeated : string;
 }
 
+let get_departure_date q = q.departureDate
+let get_dest q = q.destinationId 
+let get_orig q = q.originId
+
 let make_query dep_date dest ori =
   {
     days = "1";
@@ -44,18 +48,18 @@ let get_uri q =
   let to_build =
     [
       "days=" ^ q.days;
-      "concessionCount=" ^ q.concessionCount;
-      "departureDate=" ^ q.departureDate;
-      "destinationId=" ^ q.destinationId;
-      "inboundPcaCount=" ^ q.inboundPcaCount;
-      "inboundOtherDisabilityCount=" ^ q.inboundOtherDisabilityCount;
-      "inboundWheelChairSeated=" ^ q.inboundWheelchairSeated;
-      "nusCount=" ^ q.nusCount;
-      "originId=" ^ q.originId;
-      "otherDisabilityCount=" ^ q.otherDisabilityCount;
-      "pcaCount=" ^ q.pcaCount;
-      "totalPassengers=" ^ q.totalPassengers;
-      "wheelchairSeated=" ^ q.wheelchairSeated;
+      "&concessionCount=" ^ q.concessionCount;
+      "&departureDate=" ^ q.departureDate;
+      "&destinationId=" ^ q.destinationId;
+      "&inboundPcaCount=" ^ q.inboundPcaCount;
+      "&inboundOtherDisabilityCount=" ^ q.inboundOtherDisabilityCount;
+      "&inboundWheelChairSeated=" ^ q.inboundWheelchairSeated;
+      "&nusCount=" ^ q.nusCount;
+      "&originId=" ^ q.originId;
+      "&otherDisabilityCount=" ^ q.otherDisabilityCount;
+      "&pcaCount=" ^ q.pcaCount;
+      "&totalPassengers=" ^ q.totalPassengers;
+      "&wheelchairSeated=" ^ q.wheelchairSeated;
     ]
   in
   let query_params = concat to_build in
@@ -69,6 +73,6 @@ let body =
   Printf.printf "Response code: %d\n" code;
   body |> Cohttp_lwt.Body.to_string >|= fun body -> body
 
-let () =
+let run () =
   let body = Lwt_main.run body in
   Out_channel.write_all "./data/megabus.json" ~data:body

@@ -2,28 +2,19 @@ open OUnit2
 open Svd
 open Megabus
 
-(* let q' =
-  {
-    days = "1";
-    concessionCount = "0";
-    departureDate = "2022-10-21";
-    destinationId = "123";
-    inboundPcaCount = "0";
-    inboundOtherDisabilityCount = "0";
-    inboundWheelchairSeated = "0";
-    nusCount = "0";
-    originId = "511";
-    otherDisabilityCount = "0";
-    pcaCount = "0";
-    totalPassengers = "1";
-    wheelchairSeated = "0";
-  } *)
-
 let tests =
   "svd test suite"
   >::: [
-         (* ( "make query" >:: fun _ ->
-           assert_equal q' (make_query "2022-10-21" "123" "511") ); *)
+         ( "make query departure date" >:: fun _ ->
+           assert_equal "2022-10-21"
+             (make_query "2022-10-21" "123" "511" |> get_departure_date) );
+         ( "make query destination" >:: fun _ ->
+           assert_equal "123" (make_query "2022-10-21" "123" "511" |> get_dest)
+         );
+         ( "make query origin" >:: fun _ ->
+           assert_equal "511" (make_query "2022-10-21" "123" "511" |> get_orig)
+         );
        ]
 
 let _ = run_test_tt_main tests
+let () = run ()
