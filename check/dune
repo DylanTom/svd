@@ -1,2 +1,3 @@
 (executable
- (name check))
+ (name check)
+ (libraries Svd))

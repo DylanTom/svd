@@ -65,14 +65,12 @@ let get_uri q =
   let query_params = concat to_build in
   "https://us.megabus.com/journey-planner/api/journeys?" ^ query_params
 
-let q = make_query "2022-10-21" "123" "511"
-
-let body =
+let body q =
   Client.get (Uri.of_string (get_uri q)) >>= fun (resp, body) ->
   let code = resp |> Response.status |> Code.code_of_status in
   Printf.printf "Response code: %d\n" code;
   body |> Cohttp_lwt.Body.to_string >|= fun body -> body
 
-let run () =
-  let body = Lwt_main.run body in
+let run q =
+  let body = Lwt_main.run (body q) in
   Out_channel.write_all "./data/megabus.json" ~data:body
