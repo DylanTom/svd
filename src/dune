@@ -1,3 +1,4 @@
 (library
  (name svd)
- (libraries mechaml))
+ (public_name Svd)
+ (libraries mechaml lwt cohttp cohttp-lwt-unix core yojson))
