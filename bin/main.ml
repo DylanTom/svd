@@ -1,5 +1,8 @@
 open ANSITerminal
 open Printf
+open Svd
+open Megabus
+
 (* 
 exception UnknownCity of string
 
@@ -132,7 +135,8 @@ let main () =
 
   (* Print the Array *)
   printf "\nBus From: %s \nBus To: %s" inputs.(0) inputs.(1);
-  printf "\nDate of Travel: %s/%s/%s\n" inputs.(2) inputs.(3) inputs.(4) 
+  printf "\nDate of Travel: %s/%s/%s\n" inputs.(2) inputs.(3) inputs.(4);
+  run (make_query "2022-10-23" "123" "511")
 
 (* Execute the game engine. *)
 let () = main ()
