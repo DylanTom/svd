@@ -1,15 +1,35 @@
 # Installation Instructions
 
-## Setup
-If you have the CS 3110 OCaml OPAM switch installed, you will need to install the following additional packages:
-```
-opam install mechaml tls
-```
+Unless stated otherwise, execute all commands in the root directory of the project folder `svd`.
 
+## Setup
 If you do not have OCaml installed, follow this guide
 
 https://cs3110.github.io/textbook/chapters/preface/install.html
 
+Once you have installed the CS 3110 OCaml OPAM switch, you will need to install the following packages by executing:
+```
+opam update
+opam upgrade
+opam install -y mechaml tls
+```
+
+Additional Package Description:
++ [mechaml](https://github.com/yannham/mechaml): Mechaml is a functional web scraping library. It is built on top of existing libraries that provide low-level features : `Cohttp` and `Lwt` for asynchronous I/O and HTTP handling, and `Lambdasoup` to parse HTML.
++ [tls](https://github.com/mirleft/ocaml-tls): Transport Layer Security (TLS) is one of the most widely deployed security protocols on the Internet. This package implements TLS protocol purely in OCaml.
+
+## Test (optional)
+We would like to verify that every function is working as intended. To run our test suite, execute
+```
+make build
+make test
+```
+Verify that there are no errors and the output response is `Ok`.
+
 ## Run
-1. `make build`
-2. `make play`
+To run, execute 
+```
+make build
+make play
+``` 
+
