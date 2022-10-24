@@ -17,4 +17,3 @@ let tests =
        ]
 
 let _ = run_test_tt_main tests
-let () = run (make_query "2022-10-21" "123" "511")
