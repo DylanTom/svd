@@ -2,6 +2,7 @@ open ANSITerminal
 open Printf
 open Svd
 open Megabus
+open Inputvalidate
 
 (* 
 exception UnknownCity of string
@@ -91,6 +92,14 @@ let inputs = Array.make 5 ""
 (* let rec print_list = function [] -> ()
   |e::l -> print_string e; print_string " "; print_list l *)
 
+let print_info () = 
+  if (Inputvalidate.city inputs.(0) && Inputvalidate.city inputs.(1))  then printf "\nBus From: %s \nBus To: %s" inputs.(0) inputs.(1)
+    else printf "\nInvalid route";
+  if (Inputvalidate.date inputs.(2) inputs.(3) inputs.(4)) then
+    printf "\nDate of Travel: %s/%s/%s\n" inputs.(2) inputs.(3) inputs.(4)
+  else
+    printf "\nInvalid Date\n"
+
 (** [main ()] prompts for Expedia to start*)
 let main () =
   ANSITerminal.print_string [ ANSITerminal.red ]
@@ -133,10 +142,8 @@ let main () =
   | exception End_of_file -> ()
   | year -> inputs.(4) <- year;
 
-  (* Print the Array *)
-  printf "\nBus From: %s \nBus To: %s" inputs.(0) inputs.(1);
-  printf "\nDate of Travel: %s/%s/%s\n" inputs.(2) inputs.(3) inputs.(4);
-  run (make_query "2022-10-23" "123" "511")
+  print_info ();
+  run (make_query "2022-11-13" "123" "511")
 
 (* Execute the game engine. *)
 let () = main ()
