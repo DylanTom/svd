@@ -17,7 +17,7 @@ let month_day =
     (12, 31);
   ]
 
-let city c = List.mem c valid_cities
+let city c = List.mem (String.uppercase_ascii c) valid_cities
 
 let rec find m = function
   | [] -> None

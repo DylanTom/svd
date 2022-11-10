@@ -3,6 +3,7 @@ open Printf
 open Svd
 open Megabus
 open Inputvalidate
+open Printf
 
 (* 
 exception UnknownCity of string
@@ -109,35 +110,35 @@ let main () =
 
   (* Bus From *)
   print_endline "\nPlease enter the destination you are coming from:";
-  print_endline "> ";
+  print_string [] "> ";
   match read_line () with
   | exception End_of_file -> ()
   | bus_from -> inputs.(0) <- String.uppercase_ascii bus_from;
 
   (* Bus To *)
   print_endline "\nPlease enter the destination you want to go to:";
-  print_endline "> ";
+  print_string [] "> ";
   match read_line () with
   | exception End_of_file -> ()
   | bus_to -> inputs.(1) <- String.uppercase_ascii bus_to;
 
   (* Month *)
   print_endline "\nPlease enter the month of your travel:";
-  print_endline "> ";
+  print_string [] "> ";
   match read_line () with
   | exception End_of_file -> ()
   | month -> inputs.(2) <- month;
 
   (* Date *)
   print_endline "\nPlease enter the date of your travel:";
-  print_endline "> ";
+  print_string [] "> ";
   match read_line () with
   | exception End_of_file -> ()
   | date -> inputs.(3) <- date;
 
   (* Year *)
   print_endline "\nPlease enter the year of your travel:";
-  print_endline "> ";
+  print_string [] "> ";
   match read_line () with
   | exception End_of_file -> ()
   | year -> inputs.(4) <- year;
