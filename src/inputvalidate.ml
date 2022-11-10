@@ -1,3 +1,6 @@
+exception UnknownCity
+exception InvalidDate
+
 let valid_cities =
   [ "NYC"; "ITH"; "BOS"; "CHI"; "ATL"; "MTL"; "TOR"; "LA"; "SF"; "EWR"; "DEN" ]
 
