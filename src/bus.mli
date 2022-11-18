@@ -12,8 +12,34 @@ type t
     company. *)
 
 val from_json : Yojson.Basic.t -> t
-(** [from_json j] is the bus routes that [j] represents.
+(** [from_json j] is the bus routes that [j] represents. Requires: [j] is a
+    valid JSON bus routes representation. *)
 
-    Requires: [j] is a valid JSON bus routes representation. *)
+val find_company : string -> t list -> t
+(** [find_company company lst] is a recursive function that takes the inputs
+    [company lst]. It will raise an UnknownCompany exception if the company is
+    not in the list. If it does exist in the list, it return the company in json
+    format.*)
 
-(** test commit *)
+(** [route_from_list] is a recursive function that takes the input [lst] of type
+    buses list and outputs a list of the route from type with the type string
+    list*)
+
+(** [route_destination_list] is a recursive function that takes the input [lst]
+    of type buses list and outputs a list of the route destination type with the
+    type string list*)
+
+(** [get_possible_dates] is a recursive function that takes in the inputs
+    [route_from_list route_destination_list]. It checks if the specific
+    route_from and route_destination exists. if it does, return the list of
+    possible dates. if false, raise UnknownRoute exception.*)
+
+(** [check_date] takes in the inputs [date possible_dates]. It checks if the
+    specific date is in the list of possible dates. if false, raise UnknownRoute
+    exception*)
+
+(** [get_times] takes in the inputs [route date]. It returns the timeleave and
+    time arrive of the valide bus route.*)
+
+(** [get_price] takes in the inputs [route date time]. It returns the price and
+    the url to the bus ticket.*)
