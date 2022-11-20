@@ -18,6 +18,16 @@ let month_day =
   ]
 
 let city c = List.mem (String.uppercase_ascii c) valid_cities
+let valid_month m = int_of_string m >= 1 && int_of_string m <= 12
+
+let valid_day m d =
+  let m = int_of_string m in
+  if m = 2 then int_of_string d <= 29
+  else
+    let max_d = List.assoc m month_day in
+    if int_of_string d <= max_d then true else false
+
+let valid_year y = int_of_string y >= 2022
 
 let rec find m = function
   | [] -> None
