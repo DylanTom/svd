@@ -1,4 +1,4 @@
-(* open Yojson.Basic.Util
+open Yojson.Basic.Util
 
 exception UnknownCompany of string
 exception UnknownCity of string
@@ -59,4 +59,4 @@ let rec route_from_list lst =
   | [] -> []
   | h :: t -> h.destination :: route_destination_list t *)
 
- *)
+
