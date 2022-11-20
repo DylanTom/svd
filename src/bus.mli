@@ -7,15 +7,15 @@
     For examples, the specifications in this interface reference the example bus
     query found in [test_data/bus.json].*)
 
-type t
+(* type t *)
 (** The abstract type of values representing all valid bus routes from each
     company. *)
 
-val from_json : Yojson.Basic.t -> t
+(* val from_json : Yojson.Basic.t -> t *)
 (** [from_json j] is the bus routes that [j] represents. Requires: [j] is a
     valid JSON bus routes representation. *)
-
-val find_company : string -> t list -> t
+(* 
+val find_company : string -> t list -> t *)
 (** [find_company company lst] is a recursive function that takes the inputs
     [company lst]. It will raise an UnknownCompany exception if the company is
     not in the list. If it does exist in the list, it return the company in json
