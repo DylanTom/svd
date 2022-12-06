@@ -20,5 +20,5 @@
    - none
  ************************************************************)
 
-val hours_worked : int list
+val hours_worked : (string * int) list
 (** [hours_worked] is the number of hours we worked on this assignment. *)

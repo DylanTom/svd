@@ -44,19 +44,24 @@ let buses_of_json json =
 let from_json json =
   { buses = json |> member "buses" |> to_list |> List.map buses_of_json }
 
-let rec find_company company lst =
+let rec find_company_helper company lst =
   match lst with
   | [] -> raise (UnknownCompany company)
-  | h :: t -> if h.company = company then h else find_company company t
+  | h :: t -> if h.company = company then h else find_company_helper company t
 
-let rec route_from_list lst =
-  match lst with
+let find_company company t = failwith "todo"
+
+let rec route_from_list lst = failwith "todo"
+  (* match lst with
   | [] -> []
-  | h :: t -> h.from :: route_from_list t
+  | h :: t -> h.from :: route_from_list t *)
 
-(* let rec route_destination_list lst =
-  match lst with
+let rec route_destination_list lst = failwith "todo"
+  (* match lst with
   | [] -> []
   | h :: t -> h.destination :: route_destination_list t *)
 
-
+let get_possible_dates _ _ = failwith "todo"
+let check_date _ _ = failwith "todo"
+let get_times _ _ = failwith "todo"
+let get_price _ _ = failwith "todo"

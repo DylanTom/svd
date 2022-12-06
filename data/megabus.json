@@ -1,1 +1,326 @@
-{"journeys":[{"journeyId":"19955501","departureDateTime":"2022-12-04T11:30:00","arrivalDateTime":"2022-12-04T16:30:00","duration":"PT5H","price":39.99,"origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"North Campus Bus Stop - Jessup Rd - Outside the Robert Purcell Community Center","stopId":"e1597c9d58d86722bf00d146675f60e5"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"legs":[{"carrier":"Coach USA - Shortline","transportTypeId":1,"departureDateTime":"2022-12-04T11:30:00","arrivalDateTime":"2022-12-04T16:30:00","duration":"PT5H","origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"North Campus Bus Stop - Jessup Rd - Outside the Robert Purcell Community Center","stopId":"e1597c9d58d86722bf00d146675f60e5"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"carrierIcon":"shortline.gif"}],"reservableType":"SEAT","serviceInformation":"INFORMATION","routeName":"SL1","lowStockCount":null,"promotionCodeStatus":"NONE"},{"journeyId":"19955505","departureDateTime":"2022-12-04T11:35:00","arrivalDateTime":"2022-12-04T16:30:00","duration":"PT4H55M","price":39.99,"origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole","stopId":"a248f8c557cc5c15bf256734d2397a25"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"legs":[{"carrier":"Coach USA - Shortline","transportTypeId":1,"departureDateTime":"2022-12-04T11:35:00","arrivalDateTime":"2022-12-04T16:30:00","duration":"PT4H55M","origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole","stopId":"a248f8c557cc5c15bf256734d2397a25"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"carrierIcon":"shortline.gif"}],"reservableType":"SEAT","serviceInformation":"INFORMATION","routeName":"SL1","lowStockCount":null,"promotionCodeStatus":"NONE"},{"journeyId":"19955510","departureDateTime":"2022-12-04T11:50:00","arrivalDateTime":"2022-12-04T16:30:00","duration":"PT4H40M","price":39.99,"origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)","stopId":"f87899fe64634bba98303bf669fbe0a8"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"legs":[{"carrier":"Coach USA - Shortline","transportTypeId":1,"departureDateTime":"2022-12-04T11:50:00","arrivalDateTime":"2022-12-04T16:30:00","duration":"PT4H40M","origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)","stopId":"f87899fe64634bba98303bf669fbe0a8"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"carrierIcon":"shortline.gif"}],"reservableType":"SEAT","serviceInformation":"INFORMATION","routeName":"SL1","lowStockCount":null,"promotionCodeStatus":"NONE"},{"journeyId":"19955385","departureDateTime":"2022-12-04T14:30:00","arrivalDateTime":"2022-12-04T19:30:00","duration":"PT5H","price":39.99,"origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"North Campus Bus Stop - Jessup Rd - Outside the Robert Purcell Community Center","stopId":"e1597c9d58d86722bf00d146675f60e5"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"legs":[{"carrier":"Coach USA - Shortline","transportTypeId":1,"departureDateTime":"2022-12-04T14:30:00","arrivalDateTime":"2022-12-04T19:30:00","duration":"PT5H","origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"North Campus Bus Stop - Jessup Rd - Outside the Robert Purcell Community Center","stopId":"e1597c9d58d86722bf00d146675f60e5"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"carrierIcon":"shortline.gif"}],"reservableType":"SEAT","serviceInformation":"INFORMATION","routeName":"SL1","lowStockCount":null,"promotionCodeStatus":"NONE"},{"journeyId":"19955389","departureDateTime":"2022-12-04T14:35:00","arrivalDateTime":"2022-12-04T19:30:00","duration":"PT4H55M","price":39.99,"origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole","stopId":"a248f8c557cc5c15bf256734d2397a25"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"legs":[{"carrier":"Coach USA - Shortline","transportTypeId":1,"departureDateTime":"2022-12-04T14:35:00","arrivalDateTime":"2022-12-04T19:30:00","duration":"PT4H55M","origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole","stopId":"a248f8c557cc5c15bf256734d2397a25"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"carrierIcon":"shortline.gif"}],"reservableType":"SEAT","serviceInformation":"INFORMATION","routeName":"SL1","lowStockCount":null,"promotionCodeStatus":"NONE"},{"journeyId":"19955394","departureDateTime":"2022-12-04T14:50:00","arrivalDateTime":"2022-12-04T19:30:00","duration":"PT4H40M","price":39.99,"origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)","stopId":"f87899fe64634bba98303bf669fbe0a8"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"legs":[{"carrier":"Coach USA - Shortline","transportTypeId":1,"departureDateTime":"2022-12-04T14:50:00","arrivalDateTime":"2022-12-04T19:30:00","duration":"PT4H40M","origin":{"cityName":"Ithaca, NY","cityId":"511","stopName":"East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)","stopId":"f87899fe64634bba98303bf669fbe0a8"},"destination":{"cityName":"New York, NY","cityId":"123","stopName":"Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal","stopId":"5f624f21967797cb51dec5c085e83b62"},"carrierIcon":"shortline.gif"}],"reservableType":"SEAT","serviceInformation":"INFORMATION","routeName":"SL1","lowStockCount":null,"promotionCodeStatus":"NONE"}]}
+{
+	"journeys": [
+		{
+			"journeyId": "21511507",
+			"departureDateTime": "2022-12-16T11:25:00",
+			"arrivalDateTime": "2022-12-16T16:00:00",
+			"duration": "PT4H35M",
+			"price": 71.88,
+			"origin": {
+				"cityName": "Ithaca, NY",
+				"cityId": "511",
+				"stopName": "West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole",
+				"stopId": "a248f8c557cc5c15bf256734d2397a25"
+			},
+			"destination": {
+				"cityName": "New York, NY",
+				"cityId": "123",
+				"stopName": "Adirondack Trailway Gates at Port Authority Bus Terminal (PABT) Gates 22-34",
+				"stopId": "dce01144dcf73eb28304271e699697e3"
+			},
+			"legs": [
+				{
+					"carrier": "Adirondack Trailways",
+					"transportTypeId": 1,
+					"departureDateTime": "2022-12-16T11:25:00",
+					"arrivalDateTime": "2022-12-16T16:00:00",
+					"duration": "PT4H35M",
+					"origin": {
+						"cityName": "Ithaca, NY",
+						"cityId": "511",
+						"stopName": "West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole",
+						"stopId": "a248f8c557cc5c15bf256734d2397a25"
+					},
+					"destination": {
+						"cityName": "New York, NY",
+						"cityId": "123",
+						"stopName": "Adirondack Trailway Gates at Port Authority Bus Terminal (PABT) Gates 22-34",
+						"stopId": "dce01144dcf73eb28304271e699697e3"
+					},
+					"carrierIcon": "Trailways40x41.gif"
+				}
+			],
+			"reservableType": "NONE",
+			"serviceInformation": "INFORMATION",
+			"routeName": "AT01",
+			"lowStockCount": 3,
+			"promotionCodeStatus": "NONE"
+		},
+		{
+			"journeyId": "19976658",
+			"departureDateTime": "2022-12-16T11:30:00",
+			"arrivalDateTime": "2022-12-16T16:30:00",
+			"duration": "PT5H",
+			"price": 44.99,
+			"origin": {
+				"cityName": "Ithaca, NY",
+				"cityId": "511",
+				"stopName": "North Campus Bus Stop - Jessup Rd - Outside the Robert Purcell Community Center",
+				"stopId": "e1597c9d58d86722bf00d146675f60e5"
+			},
+			"destination": {
+				"cityName": "New York, NY",
+				"cityId": "123",
+				"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+				"stopId": "5f624f21967797cb51dec5c085e83b62"
+			},
+			"legs": [
+				{
+					"carrier": "Coach USA - Shortline",
+					"transportTypeId": 1,
+					"departureDateTime": "2022-12-16T11:30:00",
+					"arrivalDateTime": "2022-12-16T16:30:00",
+					"duration": "PT5H",
+					"origin": {
+						"cityName": "Ithaca, NY",
+						"cityId": "511",
+						"stopName": "North Campus Bus Stop - Jessup Rd - Outside the Robert Purcell Community Center",
+						"stopId": "e1597c9d58d86722bf00d146675f60e5"
+					},
+					"destination": {
+						"cityName": "New York, NY",
+						"cityId": "123",
+						"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+						"stopId": "5f624f21967797cb51dec5c085e83b62"
+					},
+					"carrierIcon": "shortline.gif"
+				}
+			],
+			"reservableType": "SEAT",
+			"serviceInformation": "INFORMATION",
+			"routeName": "SL1",
+			"lowStockCount": null,
+			"promotionCodeStatus": "NONE"
+		},
+		{
+			"journeyId": "19976662",
+			"departureDateTime": "2022-12-16T11:35:00",
+			"arrivalDateTime": "2022-12-16T16:30:00",
+			"duration": "PT4H55M",
+			"price": 44.99,
+			"origin": {
+				"cityName": "Ithaca, NY",
+				"cityId": "511",
+				"stopName": "West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole",
+				"stopId": "a248f8c557cc5c15bf256734d2397a25"
+			},
+			"destination": {
+				"cityName": "New York, NY",
+				"cityId": "123",
+				"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+				"stopId": "5f624f21967797cb51dec5c085e83b62"
+			},
+			"legs": [
+				{
+					"carrier": "Coach USA - Shortline",
+					"transportTypeId": 1,
+					"departureDateTime": "2022-12-16T11:35:00",
+					"arrivalDateTime": "2022-12-16T16:30:00",
+					"duration": "PT4H55M",
+					"origin": {
+						"cityName": "Ithaca, NY",
+						"cityId": "511",
+						"stopName": "West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole",
+						"stopId": "a248f8c557cc5c15bf256734d2397a25"
+					},
+					"destination": {
+						"cityName": "New York, NY",
+						"cityId": "123",
+						"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+						"stopId": "5f624f21967797cb51dec5c085e83b62"
+					},
+					"carrierIcon": "shortline.gif"
+				}
+			],
+			"reservableType": "SEAT",
+			"serviceInformation": "INFORMATION",
+			"routeName": "SL1",
+			"lowStockCount": null,
+			"promotionCodeStatus": "NONE"
+		},
+		{
+			"journeyId": "19976667",
+			"departureDateTime": "2022-12-16T11:50:00",
+			"arrivalDateTime": "2022-12-16T16:30:00",
+			"duration": "PT4H40M",
+			"price": 44.99,
+			"origin": {
+				"cityName": "Ithaca, NY",
+				"cityId": "511",
+				"stopName": "East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)",
+				"stopId": "f87899fe64634bba98303bf669fbe0a8"
+			},
+			"destination": {
+				"cityName": "New York, NY",
+				"cityId": "123",
+				"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+				"stopId": "5f624f21967797cb51dec5c085e83b62"
+			},
+			"legs": [
+				{
+					"carrier": "Coach USA - Shortline",
+					"transportTypeId": 1,
+					"departureDateTime": "2022-12-16T11:50:00",
+					"arrivalDateTime": "2022-12-16T16:30:00",
+					"duration": "PT4H40M",
+					"origin": {
+						"cityName": "Ithaca, NY",
+						"cityId": "511",
+						"stopName": "East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)",
+						"stopId": "f87899fe64634bba98303bf669fbe0a8"
+					},
+					"destination": {
+						"cityName": "New York, NY",
+						"cityId": "123",
+						"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+						"stopId": "5f624f21967797cb51dec5c085e83b62"
+					},
+					"carrierIcon": "shortline.gif"
+				}
+			],
+			"reservableType": "SEAT",
+			"serviceInformation": "INFORMATION",
+			"routeName": "SL1",
+			"lowStockCount": null,
+			"promotionCodeStatus": "NONE"
+		},
+		{
+			"journeyId": "19976599",
+			"departureDateTime": "2022-12-16T14:30:00",
+			"arrivalDateTime": "2022-12-16T19:30:00",
+			"duration": "PT5H",
+			"price": 47.99,
+			"origin": {
+				"cityName": "Ithaca, NY",
+				"cityId": "511",
+				"stopName": "North Campus Bus Stop - Jessup Rd - Outside the Robert Purcell Community Center",
+				"stopId": "e1597c9d58d86722bf00d146675f60e5"
+			},
+			"destination": {
+				"cityName": "New York, NY",
+				"cityId": "123",
+				"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+				"stopId": "5f624f21967797cb51dec5c085e83b62"
+			},
+			"legs": [
+				{
+					"carrier": "Coach USA - Shortline",
+					"transportTypeId": 1,
+					"departureDateTime": "2022-12-16T14:30:00",
+					"arrivalDateTime": "2022-12-16T19:30:00",
+					"duration": "PT5H",
+					"origin": {
+						"cityName": "Ithaca, NY",
+						"cityId": "511",
+						"stopName": "North Campus Bus Stop - Jessup Rd - Outside the Robert Purcell Community Center",
+						"stopId": "e1597c9d58d86722bf00d146675f60e5"
+					},
+					"destination": {
+						"cityName": "New York, NY",
+						"cityId": "123",
+						"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+						"stopId": "5f624f21967797cb51dec5c085e83b62"
+					},
+					"carrierIcon": "shortline.gif"
+				}
+			],
+			"reservableType": "SEAT",
+			"serviceInformation": "INFORMATION",
+			"routeName": "SL1",
+			"lowStockCount": null,
+			"promotionCodeStatus": "NONE"
+		},
+		{
+			"journeyId": "19976603",
+			"departureDateTime": "2022-12-16T14:35:00",
+			"arrivalDateTime": "2022-12-16T19:30:00",
+			"duration": "PT4H55M",
+			"price": 47.99,
+			"origin": {
+				"cityName": "Ithaca, NY",
+				"cityId": "511",
+				"stopName": "West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole",
+				"stopId": "a248f8c557cc5c15bf256734d2397a25"
+			},
+			"destination": {
+				"cityName": "New York, NY",
+				"cityId": "123",
+				"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+				"stopId": "5f624f21967797cb51dec5c085e83b62"
+			},
+			"legs": [
+				{
+					"carrier": "Coach USA - Shortline",
+					"transportTypeId": 1,
+					"departureDateTime": "2022-12-16T14:35:00",
+					"arrivalDateTime": "2022-12-16T19:30:00",
+					"duration": "PT4H55M",
+					"origin": {
+						"cityName": "Ithaca, NY",
+						"cityId": "511",
+						"stopName": "West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole",
+						"stopId": "a248f8c557cc5c15bf256734d2397a25"
+					},
+					"destination": {
+						"cityName": "New York, NY",
+						"cityId": "123",
+						"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+						"stopId": "5f624f21967797cb51dec5c085e83b62"
+					},
+					"carrierIcon": "shortline.gif"
+				}
+			],
+			"reservableType": "SEAT",
+			"serviceInformation": "INFORMATION",
+			"routeName": "SL1",
+			"lowStockCount": null,
+			"promotionCodeStatus": "NONE"
+		},
+		{
+			"journeyId": "19976608",
+			"departureDateTime": "2022-12-16T14:50:00",
+			"arrivalDateTime": "2022-12-16T19:30:00",
+			"duration": "PT4H40M",
+			"price": 47.99,
+			"origin": {
+				"cityName": "Ithaca, NY",
+				"cityId": "511",
+				"stopName": "East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)",
+				"stopId": "f87899fe64634bba98303bf669fbe0a8"
+			},
+			"destination": {
+				"cityName": "New York, NY",
+				"cityId": "123",
+				"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+				"stopId": "5f624f21967797cb51dec5c085e83b62"
+			},
+			"legs": [
+				{
+					"carrier": "Coach USA - Shortline",
+					"transportTypeId": 1,
+					"departureDateTime": "2022-12-16T14:50:00",
+					"arrivalDateTime": "2022-12-16T19:30:00",
+					"duration": "PT4H40M",
+					"origin": {
+						"cityName": "Ithaca, NY",
+						"cityId": "511",
+						"stopName": "East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)",
+						"stopId": "f87899fe64634bba98303bf669fbe0a8"
+					},
+					"destination": {
+						"cityName": "New York, NY",
+						"cityId": "123",
+						"stopName": "Coach USA Ithaca/Binghamton Bus Stop - Gate 401 - Port Authority Bus Terminal",
+						"stopId": "5f624f21967797cb51dec5c085e83b62"
+					},
+					"carrierIcon": "shortline.gif"
+				}
+			],
+			"reservableType": "SEAT",
+			"serviceInformation": "INFORMATION",
+			"routeName": "SL1",
+			"lowStockCount": null,
+			"promotionCodeStatus": "NONE"
+		}
+	]
+}

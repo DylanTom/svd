@@ -1,2 +1,1 @@
-(** Order of list is Sydney Ho, Vanessa Fang, Dylan Tom *)
-let hours_worked = [ -1; -1; -1 ]
+let hours_worked = [ ("sh967", -1); ("vf72", -1); ("dt425", -1) ]

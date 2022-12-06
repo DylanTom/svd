@@ -11,16 +11,16 @@ let cities =
 let inputs = Array.make 5 ""
 
 let print_info () =
-  if Inputvalidate.city inputs.(0) && Inputvalidate.city inputs.(1) then
+  if Inputvalidate.valid_city inputs.(0) && Inputvalidate.valid_city inputs.(1) then
     printf "\nBus From: %s \nBus To: %s" inputs.(0) inputs.(1)
   else printf "\nInvalid route";
 
-  if Inputvalidate.date inputs.(2) inputs.(3) inputs.(4) then
+  if Inputvalidate.valid_date inputs.(2) inputs.(3) inputs.(4) then
     printf "\nDate of Travel: %s/%s/%s\n" inputs.(2) inputs.(3) inputs.(4)
   else printf "\nInvalid Date\n"
 
 let rec match_city city flag =
-  if Inputvalidate.city city then inputs.(flag) <- String.uppercase_ascii city
+  if Inputvalidate.valid_city city then inputs.(flag) <- String.uppercase_ascii city
   else begin
 
     print_endline "\nYou entered a non-valid destination, please try again:";
@@ -150,10 +150,13 @@ let rec input_handler () =
                       "\nYES, this is correct. Please make the query. \nNO, this is incorrect, please redo.\n";
                       print_string [] "> [Y/N] ";
                       match read_line () with
-                      | "Y" | "YES" | "y" | "Yes" -> print_string [] "SUCCESS!"
+                      | "Y" | "YES" | "y" | "Yes" -> print_string [] "SUCCESS!\n"
                       | "N" | "NO" | "n" | "No" -> input_handler () 
                       | _ -> print_string [] "Invalid token"
                       ))))
+
+let rec output_handler () = 
+  print_endline "hello"
 
 
 (** [main ()] prompts for Expedia to start*)
@@ -164,9 +167,11 @@ let main () =
 
   ANSITerminal.print_string [ ANSITerminal.red ]
 
-    (String.concat " " cities ^ "\n");
+    (String.concat " " Inputvalidate.valid_cities ^ "\n");
 
-  input_handler ()
+  input_handler ();
+
+  output_handler ()
   
 
 
