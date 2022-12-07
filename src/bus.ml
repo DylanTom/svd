@@ -1,3 +1,5 @@
+open Yojson
+open Yojson.Basic
 open Yojson.Basic.Util
 
 exception UnknownCompany of string
@@ -44,12 +46,15 @@ let buses_of_json json =
 let from_json json =
   { buses = json |> member "buses" |> to_list |> List.map buses_of_json }
 
-let rec find_company_helper company lst =
+let rec find_company_helper company lst acc =
   match lst with
   | [] -> raise (UnknownCompany company)
-  | h :: t -> if h.company = company then h else find_company_helper company t
+  | h :: t -> if h.company = company then h.route @ acc else find_company_helper company t acc
 
-let find_company company t = failwith "todo"
+let find_company company t = 
+  let routes = find_company_helper company t.buses [] in 
+  let bus_list = {company = company; route = routes} in
+  {buses = [bus_list]}
 
 let rec route_from_list lst = failwith "todo"
   (* match lst with
@@ -61,7 +66,7 @@ let rec route_destination_list lst = failwith "todo"
   | [] -> []
   | h :: t -> h.destination :: route_destination_list t *)
 
-let get_possible_dates _ _ = failwith "todo"
+let get_possible_dates route_from route_to = failwith "todo"
 let check_date _ _ = failwith "todo"
 let get_times _ _ = failwith "todo"
 let get_price _ _ = failwith "todo"

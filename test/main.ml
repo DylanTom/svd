@@ -2,6 +2,7 @@ open OUnit2
 open Svd
 open Megabus
 open Inputvalidate
+open Ourbus
 
 (******************************************************************************)
 
@@ -72,10 +73,23 @@ let make_query_tests =
   ]
 
 (******************************************************************************)
+let data_dir_prefix = "data" ^ Filename.dir_sep
+let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json")
+
+let test_test =
+  [
+    ( "test" >:: fun _ ->
+      assert_equal
+        [ 71.88; 44.99; 44.99; 44.99; 47.99; 47.99; 47.99 ]
+        (Megabus.get_price (Megabus.from_json megabus)) );
+  ]
 
 let tests =
-  "svd test suite" >::: List.flatten [ input_validate_tests; make_query_tests ]
+  "svd test suite" >::: List.flatten [ input_validate_tests; make_query_tests; test_test ]
 
-let run_test = run (make_query "2022-12-16" "123" "511")
+(* let run_test = Megabus.run (Megabus.make_query "2022-12-16" "123" "511") *)
+let run_test_2 = ()
 
-let _ = run_test_tt_main tests; run_test
+let _ =
+  run_test_tt_main tests;
+  run_test_2

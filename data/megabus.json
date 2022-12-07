@@ -9,8 +9,8 @@
 			"origin": {
 				"cityName": "Ithaca, NY",
 				"cityId": "511",
-				"stopName": "West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole",
-				"stopId": "a248f8c557cc5c15bf256734d2397a25"
+				"stopName": "East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)",
+				"stopId": "f87899fe64634bba98303bf669fbe0a8"
 			},
 			"destination": {
 				"cityName": "New York, NY",
@@ -28,8 +28,8 @@
 					"origin": {
 						"cityName": "Ithaca, NY",
 						"cityId": "511",
-						"stopName": "West Campus Bus Stop - 240 West Avenue - By the Bakers Flagpole",
-						"stopId": "a248f8c557cc5c15bf256734d2397a25"
+						"stopName": "East Green Street - Bus Stop at 131 East Green Street (Outside Urban Outfitters)",
+						"stopId": "f87899fe64634bba98303bf669fbe0a8"
 					},
 					"destination": {
 						"cityName": "New York, NY",

@@ -11,6 +11,9 @@ type t
 (** The abstract type of values representing all valid bus routes from each
     company. *)
 
+exception UnknownCompany of string
+exception UnknownCity of string
+
 val from_json : Yojson.Basic.t -> t
 (** [from_json j] is the bus routes that [j] represents. Requires: [j] is a
     valid JSON bus routes representation. *)
