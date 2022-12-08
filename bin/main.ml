@@ -142,15 +142,21 @@ let rec input_handler () =
                       print_string [] "> [Y/N] ";
                       match read_line () with
                       | "Y" | "YES" | "y" | "Yes" | "yes" ->
-                          print_string [] "SUCCESS!\n\n"
+                          print_string [] "\n"
                       | "N" | "NO" | "n" | "No" | "no" -> input_handler ()
                       | _ -> print_string [] "Invalid token")))))
 
 let rec output_handler () =
   ANSITerminal.print_string [ ANSITerminal.cyan ]
     "Here are some potential bus routes sorted by price. Take a look!\n";
-  let prices = Megabus.get_price (Megabus.from_json megabus) in
-  List.iter (printf "$%.2f\n") (List.sort compare prices)
+  let info = Megabus.get_info (Megabus.from_json megabus) in
+  print_endline "origin\tdest\tdate\tprice";
+  List.iter
+    (
+     fun x ->
+       List.iter (printf "%s\t") x;
+       printf "\n")
+    (List.sort compare info)
 
 (** [main ()] prompts for Expedia to start*)
 let main () =

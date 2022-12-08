@@ -44,6 +44,7 @@ module type MegabusSig = sig
   val run : query -> unit
   val from_json : Yojson.Basic.t -> t
   val get_price : t -> float list
+  val get_info : t -> string list list
   val parse_json : Yojson.Basic.t -> Yojson.Basic.t
 end
 

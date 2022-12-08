@@ -172,4 +172,18 @@ let get_price journey =
   in
   price_helper [] journey.journeys
 
+let get_info journey =
+  let rec info_helper acc = function
+    | [] -> acc
+    | h :: t ->
+        [
+          h.origin.cityName;
+          h.destination.cityName;
+          h.departureDateTime;
+          string_of_float h.price;
+        ]
+        :: info_helper acc t
+  in
+  info_helper [] journey.journeys
+
 let parse_json from = failwith "todo"
