@@ -140,10 +140,9 @@ let rec input_handler () =
                          YES, this is correct. Please make the query. \n\
                          NO, this is incorrect, please redo.\n";
                       print_string [] "> [Y/N] ";
-                      match read_line () with
-                      | "Y" | "YES" | "y" | "Yes" | "yes" ->
-                          print_string [] "\n"
-                      | "N" | "NO" | "n" | "No" | "no" -> input_handler ()
+                      match String.lowercase_ascii (read_line ()) with
+                      | "y" | "yes" -> print_string [] "\n"
+                      | "n" | "no" -> input_handler ()
                       | _ -> print_string [] "Invalid token")))))
 
 let rec output_handler () =
@@ -152,10 +151,9 @@ let rec output_handler () =
   let info = Megabus.get_info (Megabus.from_json megabus) in
   print_endline "origin\tdest\tdate\tprice";
   List.iter
-    (
-     fun x ->
-       List.iter (printf "%s\t") x;
-       printf "\n")
+    (fun x ->
+      List.iter (printf "%s\t") x;
+      printf "\n")
     (List.sort compare info)
 
 (** [main ()] prompts for Expedia to start*)
