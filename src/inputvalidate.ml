@@ -1,5 +1,5 @@
 let valid_cities =
-  [ "NYC"; "ITH"; "BOS"; "CHI"; "ATL"; "MTL"; "TOR"; "LA"; "SF"; "EWR"; "DEN" ]
+  [ "NYC"; "ITH"; "SYR"; "BOS"; "CHI"; "ATL"; "MTL"; "TOR"; "LA"; "SF"; "EWR"; "DEN" ]
 
 let month_day =
   [
