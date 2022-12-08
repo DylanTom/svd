@@ -1,6 +1,7 @@
 open Mechaml
 module M = Agent.Monad
 open M.Infix
+open Sys
 
 type query = {
   departureDate : string;
@@ -40,6 +41,10 @@ let get_uri q =
 let require msg = function
   | Some a -> a
   | None -> failwith msg
+
+  let url = {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/08/2022&adult=1"|}
+
+let run_parser = Sys.command ("python3 script/parse_web.py " ^ url)
 
 (* type state =
   | Ok of string

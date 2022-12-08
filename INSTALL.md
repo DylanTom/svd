@@ -19,6 +19,15 @@ Additional Package Description:
 + [tls](https://github.com/mirleft/ocaml-tls): Transport Layer Security (TLS) is one of the most widely deployed security protocols on the Internet. This package implements TLS protocol purely in OCaml.
 + [core](https://opensource.janestreet.com/core/): Core is a souped-up and filled-out version of Base, Jane Street’s minimal standard library replacement. Some Core modules are extensions of their counterparts in Base.
 
+**Important**
+
+To add support for querying, we need to install a few python pacakages 
+```
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+```
+
 ## Test (optional)
 We would like to verify that every function is working as intended. To run our test suite, execute
 ```
