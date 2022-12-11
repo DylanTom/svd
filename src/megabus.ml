@@ -165,6 +165,8 @@ let rec map_journey = function
 let from_json j =
   { journeys = j |> member "journeys" |> to_list |> map_journey }
 
+(*****************************************************************************)
+
 let get_price journey =
   let rec price_helper acc = function
     | [] -> acc

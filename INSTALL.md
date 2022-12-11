@@ -2,7 +2,18 @@
 
 Unless stated otherwise, execute all commands in the root directory of the project folder `svd`.
 
-## Setup
+## Automatic Setup
+```
+make install
+```
+
+## Run
+```
+make build
+make play
+``` 
+
+## Manual Setup
 If you do not have OCaml installed, follow this guide
 
 https://cs3110.github.io/textbook/chapters/preface/install.html
@@ -36,10 +47,4 @@ make test
 ```
 Verify that there are no errors and the output response is `Ok`.
 
-## Run
-To run, execute 
-```
-make build
-make play
-``` 
 

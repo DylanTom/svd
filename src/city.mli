@@ -16,3 +16,4 @@ val output_cities : t -> string list
 
 val megabus_of_city : string -> t -> int
 val ourbus_of_city : string -> t -> string
+

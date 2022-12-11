@@ -47,7 +47,7 @@ let megabus_of_city c t =
     | _ -> failwith "Impossible"
   with Not_found -> 0
 
-let ourbus_of_city c t =
+let ourbus_of_city c t = 
   try
     match find_city c "megabus" t.cities with
     | String s -> s

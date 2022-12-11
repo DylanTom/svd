@@ -102,6 +102,7 @@ let tests =
   >::: List.flatten
          [ input_validate_tests; make_query_tests; city_validate_tests ]
 
+
 let run_test = Megabus.run (Megabus.make_query "2022-12-16" "123" "511")
 
 let run_test_2 =
