@@ -1,5 +1,26 @@
+open City
+
+let data_dir_prefix = "data" ^ Filename.dir_sep
+let cities = Yojson.Basic.from_file (data_dir_prefix ^ "cities.json")
+
 let valid_cities =
-  [ "NYC"; "ITH"; "SYR"; "BOS"; "CHI"; "ATL"; "MTL"; "TOR"; "LA"; "SF"; "EWR"; "DEN" ]
+  let cities_json = City.from_json cities in 
+  City.output_cities cities_json
+  
+  (* [
+    "NYC";
+    "ITH";
+    "SYR";
+    "BOS";
+    "CHI";
+    "ATL";
+    "MTL";
+    "TOR";
+    "LA";
+    "SF";
+    "EWR";
+    "DEN";
+  ] *)
 
 let month_day =
   [

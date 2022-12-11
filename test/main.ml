@@ -74,6 +74,19 @@ let make_query_tests =
 
 (******************************************************************************)
 let data_dir_prefix = "data" ^ Filename.dir_sep
+let cities = Yojson.Basic.from_file (data_dir_prefix ^ "cities.json")
+
+let megabus_city_test (name : string) (expected_output : int) (input : string) :
+    test =
+  name >:: fun _ ->
+  assert_equal expected_output
+    (City.megabus_of_city input (City.from_json cities))
+
+let city_validate_tests =
+  [ megabus_city_test "NYC" 123 "NYC"; megabus_city_test "ITH" 511 "ITH" ]
+
+(******************************************************************************)
+let data_dir_prefix = "data" ^ Filename.dir_sep
 let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json")
 
 let test_test =
@@ -85,12 +98,16 @@ let test_test =
   ]
 
 let tests =
-  "svd test suite" >::: List.flatten [ input_validate_tests; make_query_tests; test_test ]
+  "svd test suite"
+  >::: List.flatten
+         [ input_validate_tests; make_query_tests; city_validate_tests ]
 
 let run_test = Megabus.run (Megabus.make_query "2022-12-16" "123" "511")
-let run_test_2 = [
-  "jffj" >:: fun _ -> assert_equal 3 (Ourbus.run_parser) ~printer:string_of_int
-]
+
+let run_test_2 =
+  [
+    ("jffj" >:: fun _ -> assert_equal 3 Ourbus.run_parser ~printer:string_of_int);
+  ]
 
 let _ =
   run_test_tt_main tests;
