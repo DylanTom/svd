@@ -159,7 +159,7 @@ let rec output_handler () =
 (** [main ()] prompts for Expedia to start*)
 let main () =
   ANSITerminal.print_string [ ANSITerminal.red ]
-    "Welcome to Expedia for buses!\n\
+    "\nWelcome to Expedia for buses!\n\
      The suggested cities to travel to and from are:\n\
      \t";
 

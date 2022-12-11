@@ -43,3 +43,7 @@ bisect: bisect-clean
 
 bisect-clean: 
 	rm -rf _coverage bisect*.coverage
+
+install:
+	@bash setup.sh
+

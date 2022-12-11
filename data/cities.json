@@ -1,0 +1,59 @@
+{
+	"cities": [
+		{
+			"city": "NYC",
+			"Megabus": 123,
+			"Ourbus": "New%20York,%20NY"
+		},
+		{
+			"city": "ITH",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		},
+		{
+			"city": "BOS",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		},
+		{
+			"city": "CHI",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		},
+		{
+			"city": "ATL",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		},
+		{
+			"city": "MTL",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		},
+		{
+			"city": "TOR",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		},
+		{
+			"city": "LA",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		},
+		{
+			"city": "SF",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		},
+		{
+			"city": "EWR",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		},
+		{
+			"city": "DEN",
+			"Megabus": 511,
+			"Ourbus": "Ithaca,%20NY"
+		}
+	]
+}
