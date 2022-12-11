@@ -5,6 +5,7 @@ open Core
 open Yojson
 open Yojson.Basic
 open Yojson.Basic.Util
+open Core_unix
 
 type query = {
   days : string;
@@ -77,6 +78,7 @@ let body q =
 
 let run q =
   let body = Lwt_main.run (body q) in
+  (* let _ = Filename_unix.temp_file "test" "" in *)
   Out_channel.write_all "./data/megabus.json" ~data:body
 
 (*****************************************************************************)

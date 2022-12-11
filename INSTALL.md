@@ -22,7 +22,7 @@ Once you have installed the CS 3110 OCaml OPAM switch, you will need to install 
 ```
 opam update
 opam upgrade
-opam install -y mechaml tls core
+opam install -y mechaml tls core core_unix
 ```
 
 Additional Package Description:

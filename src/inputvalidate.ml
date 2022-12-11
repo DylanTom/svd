@@ -1,27 +1,15 @@
 open City
+open Unix
 
 let data_dir_prefix = "data" ^ Filename.dir_sep
 let cities = Yojson.Basic.from_file (data_dir_prefix ^ "cities.json")
 
 let valid_cities =
-  let cities_json = City.from_json cities in 
+  let cities_json = City.from_json cities in
   City.output_cities cities_json
-  
-  (* [
-    "NYC";
-    "ITH";
-    "SYR";
-    "BOS";
-    "CHI";
-    "ATL";
-    "MTL";
-    "TOR";
-    "LA";
-    "SF";
-    "EWR";
-    "DEN";
-  ] *)
 
+(* [ "NYC"; "ITH"; "SYR"; "BOS"; "CHI"; "ATL"; "MTL"; "TOR"; "LA"; "SF"; "EWR";
+   "DEN"; ] *)
 
 let month_day =
   [
@@ -54,7 +42,10 @@ let valid_day m d =
       if int_of_string d <= max_d && int_of_string d > 0 then true else false
   with Failure _ -> false
 
-let valid_year y = try int_of_string y >= 2022 with Failure _ -> false
+let currentTime = Unix.localtime (Unix.time ())
+
+let valid_year y =
+  try int_of_string y >= currentTime.tm_year + 1900 with Failure _ -> false
 
 let rec find m = function
   | [] -> None

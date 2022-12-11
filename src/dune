@@ -1,6 +1,6 @@
 (library
  (name svd)
  (public_name Svd)
- (libraries mechaml lwt cohttp cohttp-lwt-unix core yojson)
+ (libraries mechaml lwt cohttp cohttp-lwt-unix core yojson core_unix)
  (instrumentation
    (backend bisect_ppx)))
