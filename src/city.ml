@@ -27,6 +27,12 @@ let from_json j = { cities = j |> member "cities" |> to_list |> map_cities }
 
 (******************************************************************************)
 
+let output_cities t =
+let rec output_cities_helper acc = function
+  | [] -> acc
+  | h :: t -> h.city_name :: output_cities_helper acc t
+in output_cities_helper [] t.cities
+
 let rec find_city c company = function
   | [] -> raise Not_found
   | h :: t ->

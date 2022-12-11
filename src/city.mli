@@ -12,6 +12,8 @@ type t
 val from_json : Yojson.Basic.t -> t
 (** [from_json j] returns the OCaml representation of a city JSON. *)
 
-val megabus_of_city : string -> t -> int 
+val output_cities : t -> string list
 
+val megabus_of_city : string -> t -> int
 val ourbus_of_city : string -> t -> string
+
