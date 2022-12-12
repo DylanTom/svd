@@ -36,6 +36,7 @@ module InputValidatorCheck : ValidatorSig = Inputvalidate
 module type MegabusSig = sig
   type t
   type query
+  type vehicle
 
   val get_departure_date : query -> string
   val get_dest : query -> string
@@ -45,7 +46,7 @@ module type MegabusSig = sig
   val from_json : Yojson.Basic.t -> t
   val get_price : t -> float list
   val get_info : t -> string list list
-  val parse_json : Yojson.Basic.t -> Yojson.Basic.t
+  val parse_json : Yojson.Basic.t -> query -> vehicle
 end
 
 module MegabusCheck : MegabusSig = Megabus
@@ -56,6 +57,5 @@ let verify_hours hours =
     | (_, v) :: t -> v > 0 && verify acc t
   in
   verify true hours
-
 
 let _ = if verify_hours Author.hours_worked then exit 1

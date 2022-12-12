@@ -6,6 +6,7 @@ open Yojson
 open Yojson.Basic
 open Yojson.Basic.Util
 open Core_unix
+open Bus
 
 type query = {
   days : string;
@@ -183,11 +184,50 @@ let get_info journey =
         [
           h.origin.cityName;
           h.destination.cityName;
-          h.departureDateTime;
+          String.sub h.departureDateTime 5 2;
+          String.sub h.departureDateTime 8 2;
+          String.sub h.departureDateTime 0 4;
+          String.sub h.departureDateTime 11 8;
+          String.sub h.arrivalDateTime 11 8;
           string_of_float h.price;
         ]
         :: info_helper acc t
   in
   info_helper [] journey.journeys
 
-let parse_json from = failwith "todo"
+type path = {
+  from : string;
+  destination : string;
+  month : int;
+  date : int;
+  year : int;
+  price : float;
+  timeleave : string;
+  timearrive : string;
+  url : string;
+}
+
+type vehicle = {
+  company : string;
+  route : path list;
+}
+
+let parse_json j q =
+  let journey = from_json j in
+  let rec parse_json_helper acc = function
+    | [] -> acc
+    | h :: t ->
+        {
+          from = h.origin.cityName;
+          destination = h.destination.cityName;
+          month = int_of_string (String.sub h.departureDateTime 5 2);
+          date = int_of_string (String.sub h.departureDateTime 8 2);
+          year = int_of_string (String.sub h.departureDateTime 0 4);
+          price = h.price;
+          timeleave = String.sub h.departureDateTime 11 8;
+          timearrive = String.sub h.arrivalDateTime 11 8;
+          url = get_uri q;
+        }
+        :: parse_json_helper acc t
+  in
+  { company = "Megabus"; route = parse_json_helper [] journey.journeys }

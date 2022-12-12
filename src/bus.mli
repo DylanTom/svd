@@ -6,7 +6,11 @@
 
     For examples, the specifications in this interface reference the example bus
     query found in [test_data/bus.json]. *)
+type route
+(** The type of values representing a single bus route. *)
 
+type buses
+(** The type of values representing all routes for each company. *)
 type t
 (** The abstract type of values representing all valid bus routes from each
     company. *)

@@ -11,7 +11,7 @@ type route = {
   month : int;
   date : int;
   year : int;
-  price : int;
+  price : float;
   timeleave : string;
   timearrive : string;
   url : string;
@@ -31,7 +31,7 @@ let route_of_json json =
     month = json |> member "month" |> to_int;
     date = json |> member "date" |> to_int;
     year = json |> member "year" |> to_int;
-    price = json |> member "price" |> to_int;
+    price = json |> member "price" |> to_float;
     timeleave = json |> member "timeleave" |> to_string;
     timearrive = json |> member "timearrive" |> to_string;
     url = json |> member "url" |> to_string;
