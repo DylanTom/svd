@@ -29,7 +29,9 @@ val run : query -> unit
 type t
 (** The abstract type representing the OCaml representation of a Megabus JSON *)
 
+type vehicle
+(** The abstract type representing the OCaml representation of a Megabus route list *)
 val from_json : Yojson.Basic.t -> t
 val get_price : t -> float list
 val get_info : t -> string list list
-val parse_json : Yojson.Basic.t -> Yojson.Basic.t
+val parse_json : Yojson.Basic.t -> query -> vehicle

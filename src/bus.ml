@@ -11,7 +11,7 @@ type route = {
   month : int;
   date : int;
   year : int;
-  price : int;
+  price : float;
   timeleave : string;
   timearrive : string;
   url : string;
@@ -31,7 +31,7 @@ let route_of_json json =
     month = json |> member "month" |> to_int;
     date = json |> member "date" |> to_int;
     year = json |> member "year" |> to_int;
-    price = json |> member "price" |> to_int;
+    price = json |> member "price" |> to_float;
     timeleave = json |> member "timeleave" |> to_string;
     timearrive = json |> member "timearrive" |> to_string;
     url = json |> member "url" |> to_string;
@@ -49,22 +49,21 @@ let from_json json =
 let rec find_company_helper company lst acc =
   match lst with
   | [] -> raise (UnknownCompany company)
-  | h :: t -> if h.company = company then h.route @ acc else find_company_helper company t acc
+  | h :: t ->
+      if h.company = company then h.route @ acc
+      else find_company_helper company t acc
 
-let find_company company t = 
-  let routes = find_company_helper company t.buses [] in 
-  let bus_list = {company = company; route = routes} in
-  {buses = [bus_list]}
+let find_company company t =
+  let routes = find_company_helper company t.buses [] in
+  let bus_list = { company; route = routes } in
+  { buses = [ bus_list ] }
 
 let rec route_from_list lst = failwith "todo"
-  (* match lst with
-  | [] -> []
-  | h :: t -> h.from :: route_from_list t *)
+(* match lst with | [] -> [] | h :: t -> h.from :: route_from_list t *)
 
 let rec route_destination_list lst = failwith "todo"
-  (* match lst with
-  | [] -> []
-  | h :: t -> h.destination :: route_destination_list t *)
+(* match lst with | [] -> [] | h :: t -> h.destination :: route_destination_list
+   t *)
 
 let get_possible_dates route_from route_to = failwith "todo"
 let check_date _ _ = failwith "todo"
