@@ -6,6 +6,7 @@ open Yojson
 open Yojson.Basic
 open Yojson.Basic.Util
 open Core_unix
+open Bus
 
 type query = {
   days : string;
@@ -183,11 +184,15 @@ let get_info journey =
         [
           h.origin.cityName;
           h.destination.cityName;
-          h.departureDateTime;
+          String.sub h.departureDateTime 5 2;
+          String.sub h.departureDateTime 8 2;
+          String.sub h.departureDateTime 0 4;
+          String.sub h.departureDateTime 11 8;
+          String.sub h.arrivalDateTime 11 8;
           string_of_float h.price;
         ]
         :: info_helper acc t
   in
   info_helper [] journey.journeys
 
-let parse_json from = failwith "todo"
+let parse_json p = failwith "TODO"
