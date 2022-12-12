@@ -140,7 +140,8 @@ let leg_of_json j =
     carrierIcon = j |> member "carrierIcon" |> to_string;
   }
 
-let rec map_leg = function
+let rec map_leg lst =
+  match lst with
   | [] -> []
   | h :: t -> leg_of_json h :: map_leg t
 
@@ -161,7 +162,8 @@ let journey_of_json j =
     promotionCodeStatus = j |> member "promotionCodeStatus" |> to_string;
   }
 
-let rec map_journey = function
+let rec map_journey lst =
+  match lst with
   | [] -> []
   | h :: t -> journey_of_json h :: map_journey t
 
@@ -171,14 +173,16 @@ let from_json j =
 (*****************************************************************************)
 
 let get_price journey =
-  let rec price_helper acc = function
+  let rec price_helper acc lst =
+    match lst with
     | [] -> acc
     | h :: t -> h.price :: price_helper acc t
   in
   price_helper [] journey.journeys
 
 let get_info journey =
-  let rec info_helper acc = function
+  let rec info_helper acc lst =
+    match lst with
     | [] -> acc
     | h :: t ->
         [
@@ -214,7 +218,8 @@ type vehicle = {
 
 let parse_json j q =
   let journey = from_json j in
-  let rec parse_json_helper acc = function
+  let rec parse_json_helper acc lst =
+    match lst with
     | [] -> acc
     | h :: t ->
         {
@@ -231,3 +236,29 @@ let parse_json j q =
         :: parse_json_helper acc t
   in
   { company = "Megabus"; route = parse_json_helper [] journey.journeys }
+
+let map_date input =
+  match input with
+  | "1" -> "01"
+  | "2" -> "02"
+  | "3" -> "03"
+  | "4" -> "04"
+  | "5" -> "05"
+  | "6" -> "06"
+  | "7" -> "07"
+  | "8" -> "08"
+  | "9" -> "09"
+  | s -> s
+
+let map_month input =
+  match input with
+  | "1" -> "01"
+  | "2" -> "02"
+  | "3" -> "03"
+  | "4" -> "04"
+  | "5" -> "05"
+  | "6" -> "06"
+  | "7" -> "07"
+  | "8" -> "08"
+  | "9" -> "09"
+  | s -> s
