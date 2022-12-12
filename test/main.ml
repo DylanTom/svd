@@ -1,3 +1,34 @@
+(** Testing Plan
+
+    Our tests mainly focused on the verification of validators specifically in
+    the [Inputvalidate], [City], [Megabus], and [Ourbus] modules. The main
+    reason for this was because the main functionality of our system comes from
+    interaction with the terminal. It is very difficult to test functions
+    located in "bin/main.ml" as most return type unit.
+
+    This test suite demonstrates understanding of the requirements necessary to
+    prove the majority of our functions correct. We have automatic unit tests
+    covering:
+
+    - input validation of cities, months, days, years, and dates
+    - query validation, specifically with making a valid query to Megabus and
+      Ourbus
+    - city validation of converting cities to its int representation for Megabus
+      and string representation for Ourbus
+
+    Test cases were developed using both a black box and glass box approach. For
+    the majority of functions, we followed the specification to construct tests
+    for boundary cases. Then, we ensured 100% bisect coverage as the method for
+    glass box testing. We believe that this achieved full correctness as it
+    covered many different user inputs that could still be valid and also
+    ensured that different items were validated correctly.
+
+    There was a significant amount of manual terminal testing that had to be
+    done. In hindsight, this could have been automated but with the amount of
+    changes we went through we decided it was in our best interest to manually
+    test the terminal but automate our verification to ensure nothing broke in
+    development. *)
+
 open OUnit2
 open Svd
 open Megabus
@@ -5,6 +36,7 @@ open Inputvalidate
 open Ourbus
 
 (******************************************************************************)
+(** INPUT VALIDATE TESTS **)
 
 let input_validate_city_test (name : string) (expected_output : bool)
     (input : string) : test =
@@ -56,6 +88,7 @@ let input_validate_tests =
   ]
 
 (******************************************************************************)
+(** MEGABUS MAKE QUERY TESTS **)
 
 let make_query_test (name : string) (expected_output : string)
     (input_fn : query -> string) (date : string) (dest : string)
@@ -73,7 +106,10 @@ let make_query_tests =
   ]
 
 (******************************************************************************)
+
+(** CITY CONVERSION VALIDATE TESTS **)
 let data_dir_prefix = "data" ^ Filename.dir_sep
+
 let cities = Yojson.Basic.from_file (data_dir_prefix ^ "cities.json")
 
 let megabus_city_test (name : string) (expected_output : int) (input : string) :
@@ -86,7 +122,10 @@ let city_validate_tests =
   [ megabus_city_test "NYC" 123 "NYC"; megabus_city_test "ITH" 511 "ITH" ]
 
 (******************************************************************************)
+
+(** GENERAL TESTS **)
 let data_dir_prefix = "data" ^ Filename.dir_sep
+
 let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json")
 
 let test_test =
@@ -102,13 +141,20 @@ let tests =
   >::: List.flatten
          [ input_validate_tests; make_query_tests; city_validate_tests ]
 
+(******************************************************************************)
+(** UNIT TESTERS **)
 
 let run_test = Megabus.run (Megabus.make_query "2022-12-16" "123" "511")
 
 let run_test_2 =
   [
-    ("jffj" >:: fun _ -> assert_equal 3 Ourbus.run_parser ~printer:string_of_int);
+    ( "Ourbus Python Script" >:: fun _ ->
+      assert_equal 3 Ourbus.run_parser ~printer:string_of_int );
   ]
+
+(******************************************************************************)
+(** MAIN TEST **)
+(******************************************************************************)
 
 let _ =
   run_test_tt_main tests;
