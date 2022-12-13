@@ -187,3 +187,51 @@ let importantinfo_of_json json =
     travel_date = json |> member "travel_date" |> to_string;
     route_name = json |> member "route_name" |> to_string;
   }
+
+let rec voucher_helper lst =
+  match lst with
+  | [] -> []
+  | h :: t -> failwith "unimplemented"
+
+let rec importantinfo_helper lst =
+  match lst with
+  | [] -> []
+  | h :: t -> importantinfo_of_json h :: importantinfo_helper t
+
+let rec similarSearch_helper lst =
+  match lst with
+  | [] -> []
+  | h :: t -> failwith "unimplemented"
+
+let rec date_search_data_helper lst =
+  match lst with
+  | [] -> []
+  | h :: t -> failwith "unimplemented"
+
+let searchedRouteList_of_json json =
+  {
+    voucher = json |> member "voucher" |> to_list |> voucher_helper;
+    importantinfo =
+      json |> member "importantinfo" |> to_list |> importantinfo_helper;
+    similarSearch =
+      json |> member "similarSearch" |> to_list |> similarSearch_helper;
+    date_search_data =
+      json |> member "data_search_data" |> to_list |> date_search_data_helper;
+    statusCode = json |> member "statusCode" |> to_int;
+  }
+
+let rec searchedRouteList_helper lst =
+  match lst with
+  | [] -> []
+  | h :: t -> searchedRouteList_of_json h :: searchedRouteList_helper t
+
+let from_json json =
+  {
+    searchedRouteList =
+      json |> member "searchedRouteList" |> to_list |> searchedRouteList_helper;
+    typeType = json |> member "typeType" |> to_string;
+    numberOfAdults = json |> member "numberOfAdluts" |> to_string;
+    date_month = json |> member "date_month" |> to_string;
+    dateMonthType = json |> member "dateMonthType" |> to_string;
+  }
+(******************************************************)
