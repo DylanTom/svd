@@ -10,7 +10,6 @@ let cities =
 
 let inputs = Array.make 5 ""
 let data_dir_prefix = "data" ^ Filename.dir_sep
-let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json")
 
 let print_info () =
   if Inputvalidate.valid_city inputs.(0) && Inputvalidate.valid_city inputs.(1)
@@ -145,9 +144,31 @@ let rec input_handler () =
                       | "n" | "no" -> input_handler ()
                       | _ -> print_string [] "Invalid token")))))
 
+let execute () =
+  let data_dir_prefix = "data" ^ Filename.dir_sep in
+
+  let cities = Yojson.Basic.from_file (data_dir_prefix ^ "cities.json") in
+  (* Megabus Handler *)
+  let megabus_origin =
+    City.megabus_of_city inputs.(0) (City.from_json cities)
+  in
+  let megabus_destination =
+    City.megabus_of_city inputs.(1) (City.from_json cities)
+  in
+  let query =
+    Megabus.make_query
+      (String.concat "-" [ inputs.(4); inputs.(2); inputs.(3) ])
+      (string_of_int megabus_destination)
+      (string_of_int megabus_origin)
+  in
+  Megabus.run query
+(* Ourbus Handler *)
+
 let rec output_handler () =
+  execute ();
   ANSITerminal.print_string [ ANSITerminal.cyan ]
     "Here are some potential bus routes sorted by price. Take a look!\n";
+  let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json") in
   let info = Megabus.get_info (Megabus.from_json megabus) in
   print_endline "origin\tdest\tdate\tprice";
   List.iter
@@ -159,7 +180,8 @@ let rec output_handler () =
 (** [main ()] prompts for Expedia to start*)
 let main () =
   ANSITerminal.print_string [ ANSITerminal.red ]
-    "\nWelcome to Expedia for buses!\n\
+    "\n\
+     Welcome to Expedia for buses!\n\
      The suggested cities to travel to and from are:\n\
      \t";
 
