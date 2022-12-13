@@ -180,6 +180,16 @@ let get_price journey =
   in
   price_helper [] journey.journeys
 
+let date h =
+  let m_d_y =
+    [
+      String.sub h.departureDateTime 5 2;
+      String.sub h.departureDateTime 8 2;
+      String.sub h.departureDateTime 0 4;
+    ]
+  in
+  String.concat ~sep:"/" m_d_y
+
 let get_info journey =
   let rec info_helper acc lst =
     match lst with
@@ -188,12 +198,10 @@ let get_info journey =
         [
           h.origin.cityName;
           h.destination.cityName;
-          String.sub h.departureDateTime 5 2;
-          String.sub h.departureDateTime 8 2;
-          String.sub h.departureDateTime 0 4;
+          date h;
           String.sub h.departureDateTime 11 8;
           String.sub h.arrivalDateTime 11 8;
-          string_of_float h.price;
+          String.concat [ "$"; string_of_float h.price ];
         ]
         :: info_helper acc t
   in

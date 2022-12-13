@@ -31,6 +31,7 @@ type t
 
 type vehicle
 (** The abstract type representing the OCaml representation of a Megabus route list *)
+
 val from_json : Yojson.Basic.t -> t
 val get_price : t -> float list
 val get_info : t -> string list list
