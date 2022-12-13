@@ -122,6 +122,56 @@ type importantinfo = {
 type similarSearch = {
   pass_id : int;
   route_id : int;
+  src_sm_id: int;
+  dest_sm_id: int;
+  src_stop_id: int;
+  dest_stop_id: int;
+  last_stop_id: int;
+  available_seat: int;
+  default_search: int;
+  disclaimer_flag: int;
+  src_location: src_location list;
+  dest_location : dest_location list;
+  src_stop_name: string;
+  dest_stop_name: string;
+  src_landmark: string;
+  dest_landmark: string;
+  src_stop_eta: string;
+  dest_stop_eta: string;
+  src_stop_path: string;
+  dest_stop_path: string;
+  transport_provider: string;
+  pass_amount: float;
+  booking_fee: float;
+  facility_fee: float;
+  travel_date: string;
+  expire_time: string;
+  route_name: string;
+  start_time: string;
+  first_stop_name: string;
+  first_stop_id: int;
+  first_stop_eta: string;
+  last_stop_name: string;
+  last_stop_eta: string;
+  src_zipcode: string;
+  dest_zipcode: string;
+  first_stop_zipcode: string;
+  last_stop_zipcode: string; 
+  up_down_type: string;
+  trip_status: string;
+  trip_amenities: string;
+  first_mile: int;
+  last_mile: int; 
+  trip_id:  int;
+  src_day_change: int;
+  dest_day_change: int; 
+  dest_arrival_date: string;
+  src_timezone: string;
+  dest_timezone: string; 
+  src_travel_date: string;
+  partner_trip: string;
+  dest_stop_facility_fee_tool_tip: string;
+  booking_fee_tool_tip: string;
 }
 
 type data_search_data = {
