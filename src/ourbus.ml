@@ -2,6 +2,9 @@ open Mechaml
 module M = Agent.Monad
 open M.Infix
 open Sys
+open Yojson
+open Yojson.Basic
+open Yojson.Basic.Util
 
 type query = {
   departureDate : string;
@@ -71,52 +74,18 @@ type importantinfo = {
   dest_sm_id : int; (*important*)
   src_stop_id : int; (*important*)
   dest_stop_id : int; (*important*)
-  last_stop_id : int;
   available_seat : int; (*important*)
-  default_search : int;
-  disclaimer_flag : int;
-  src_location : src_location list;
-  dest_location : dest_location list;
   src_stop_name : string; (*important*)
   dest_stop_name : string; (*important*)
   src_landmark : string; (*important*)
   dest_landmark : string; (*important*)
   src_stop_eta : string; (*important*)
-  dest_stop_eta : string;(*important*)
-  src_stop_path : string;
-  dest_stop_path : string;
-  transport_provider : string;
-  pass_amount : float;(*important*)
-  booking_fee : float;(*important*)
-  facility_fee : float;(*important*)
-  travel_date : string;(*important*)
-  expire_time : string;
+  dest_stop_eta : string; (*important*)
+  pass_amount : float; (*important*)
+  booking_fee : float; (*important*)
+  facility_fee : float; (*important*)
+  travel_date : string; (*important*)
   route_name : string; (*important*)
-  start_time : string;
-  first_stop_name : string; 
-  first_stop_id : int;
-  first_stop_eta : string;
-  last_stop_name : string;
-  last_stop_eta : string;
-  src_zipcode : string;
-  dest_zipcode : string;
-  first_stop_zipcode : string;
-  last_stop_zipcode : string;
-  up_down_type : string;
-  trip_status : string;
-  trip_amenities : string;
-  first_mile : int;
-  last_mile : int;
-  trip_id : int;
-  src_day_change : int;
-  dest_day_change : int;
-  dest_arrival_date : string;
-  src_timezone : string;
-  dest_timezone : string;
-  src_travel_date : string;
-  partner_trip : string;
-  dest_stop_facility_fee_tool_tip : string;
-  booking_fee_tool_tip : string;
 }
 
 type similarSearch = {
@@ -196,3 +165,25 @@ type t = {
   date_month : string;
   dateMonthType : string;
 }
+
+let importantinfo_of_json json =
+  {
+    pass_id = json |> member "pass_id" |> to_int;
+    route_id = json |> member "route_id" |> to_int;
+    src_sm_id = json |> member "src_sm_id" |> to_int;
+    dest_sm_id = json |> member "pass_id" |> to_int;
+    src_stop_id = json |> member "src_stop_id" |> to_int;
+    dest_stop_id = json |> member "dest_stop_id" |> to_int;
+    available_seat = json |> member "available_seat" |> to_int;
+    src_stop_name = json |> member "src_stop_name" |> to_string;
+    dest_stop_name = json |> member "dest_stop_name" |> to_string;
+    src_landmark = json |> member "src_landmark" |> to_string;
+    dest_landmark = json |> member "dest_landmark" |> to_string;
+    src_stop_eta = json |> member "src_stop_eta" |> to_string;
+    dest_stop_eta = json |> member "dest_stop_eta" |> to_string;
+    pass_amount = json |> member "pass_amount" |> to_float;
+    booking_fee = json |> member "booking_fee" |> to_float;
+    facility_fee = json |> member "facility_fee" |> to_float;
+    travel_date = json |> member "travel_date" |> to_string;
+    route_name = json |> member "route_name" |> to_string;
+  }
