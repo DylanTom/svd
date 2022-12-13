@@ -55,123 +55,123 @@ type voucher = {
 }
 
 type src_location = {
-  lat: float;
-  lon: float;
+  lat : float;
+  lon : float;
 }
 
 type dest_location = {
-  lat: float;
-  lon: float;
+  lat : float;
+  lon : float;
 }
 
 type importantinfo = {
-  pass_id : int;
-  route_id : int;
-  src_sm_id: int;
-  dest_sm_id: int;
-  src_stop_id: int;
-  dest_stop_id: int;
-  last_stop_id: int;
-  available_seat: int;
-  default_search: int;
-  disclaimer_flag: int;
-  src_location: src_location list;
+  pass_id : int; (*important*)
+  route_id : int; (*important*)
+  src_sm_id : int; (*important*)
+  dest_sm_id : int; (*important*)
+  src_stop_id : int; (*important*)
+  dest_stop_id : int; (*important*)
+  last_stop_id : int;
+  available_seat : int; (*important*)
+  default_search : int;
+  disclaimer_flag : int;
+  src_location : src_location list;
   dest_location : dest_location list;
-  src_stop_name: string;
-  dest_stop_name: string;
-  src_landmark: string;
-  dest_landmark: string;
-  src_stop_eta: string;
-  dest_stop_eta: string;
-  src_stop_path: string;
-  dest_stop_path: string;
-  transport_provider: string;
-  pass_amount: float;
-  booking_fee: float;
-  facility_fee: float;
-  travel_date: string;
-  expire_time: string;
-  route_name: string;
-  start_time: string;
-  first_stop_name: string;
-  first_stop_id: int;
-  first_stop_eta: string;
-  last_stop_name: string;
-  last_stop_eta: string;
-  src_zipcode: string;
-  dest_zipcode: string;
-  first_stop_zipcode: string;
-  last_stop_zipcode: string; 
-  up_down_type: string;
-  trip_status: string;
-  trip_amenities: string;
-  first_mile: int;
-  last_mile: int; 
-  trip_id:  int;
-  src_day_change: int;
-  dest_day_change: int; 
-  dest_arrival_date: string;
-  src_timezone: string;
-  dest_timezone: string; 
-  src_travel_date: string;
-  partner_trip: string;
-  dest_stop_facility_fee_tool_tip: string;
-  booking_fee_tool_tip: string;
+  src_stop_name : string; (*important*)
+  dest_stop_name : string; (*important*)
+  src_landmark : string; (*important*)
+  dest_landmark : string; (*important*)
+  src_stop_eta : string; (*important*)
+  dest_stop_eta : string;(*important*)
+  src_stop_path : string;
+  dest_stop_path : string;
+  transport_provider : string;
+  pass_amount : float;(*important*)
+  booking_fee : float;(*important*)
+  facility_fee : float;(*important*)
+  travel_date : string;(*important*)
+  expire_time : string;
+  route_name : string; (*important*)
+  start_time : string;
+  first_stop_name : string; 
+  first_stop_id : int;
+  first_stop_eta : string;
+  last_stop_name : string;
+  last_stop_eta : string;
+  src_zipcode : string;
+  dest_zipcode : string;
+  first_stop_zipcode : string;
+  last_stop_zipcode : string;
+  up_down_type : string;
+  trip_status : string;
+  trip_amenities : string;
+  first_mile : int;
+  last_mile : int;
+  trip_id : int;
+  src_day_change : int;
+  dest_day_change : int;
+  dest_arrival_date : string;
+  src_timezone : string;
+  dest_timezone : string;
+  src_travel_date : string;
+  partner_trip : string;
+  dest_stop_facility_fee_tool_tip : string;
+  booking_fee_tool_tip : string;
 }
 
 type similarSearch = {
   pass_id : int;
   route_id : int;
-  src_sm_id: int;
-  dest_sm_id: int;
-  src_stop_id: int;
-  dest_stop_id: int;
-  last_stop_id: int;
-  available_seat: int;
-  default_search: int;
-  disclaimer_flag: int;
-  src_location: src_location list;
+  src_sm_id : int;
+  dest_sm_id : int;
+  src_stop_id : int;
+  dest_stop_id : int;
+  last_stop_id : int;
+  available_seat : int;
+  default_search : int;
+  disclaimer_flag : int;
+  src_location : src_location list;
   dest_location : dest_location list;
-  src_stop_name: string;
-  dest_stop_name: string;
-  src_landmark: string;
-  dest_landmark: string;
-  src_stop_eta: string;
-  dest_stop_eta: string;
-  src_stop_path: string;
-  dest_stop_path: string;
-  transport_provider: string;
-  pass_amount: float;
-  booking_fee: float;
-  facility_fee: float;
-  travel_date: string;
-  expire_time: string;
-  route_name: string;
-  start_time: string;
-  first_stop_name: string;
-  first_stop_id: int;
-  first_stop_eta: string;
-  last_stop_name: string;
-  last_stop_eta: string;
-  src_zipcode: string;
-  dest_zipcode: string;
-  first_stop_zipcode: string;
-  last_stop_zipcode: string; 
-  up_down_type: string;
-  trip_status: string;
-  trip_amenities: string;
-  first_mile: int;
-  last_mile: int; 
-  trip_id:  int;
-  src_day_change: int;
-  dest_day_change: int; 
-  dest_arrival_date: string;
-  src_timezone: string;
-  dest_timezone: string; 
-  src_travel_date: string;
-  partner_trip: string;
-  dest_stop_facility_fee_tool_tip: string;
-  booking_fee_tool_tip: string;
+  src_stop_name : string;
+  dest_stop_name : string;
+  src_landmark : string;
+  dest_landmark : string;
+  src_stop_eta : string;
+  dest_stop_eta : string;
+  src_stop_path : string;
+  dest_stop_path : string;
+  transport_provider : string;
+  pass_amount : float;
+  booking_fee : float;
+  facility_fee : float;
+  travel_date : string;
+  expire_time : string;
+  route_name : string;
+  start_time : string;
+  first_stop_name : string;
+  first_stop_id : int;
+  first_stop_eta : string;
+  last_stop_name : string;
+  last_stop_eta : string;
+  src_zipcode : string;
+  dest_zipcode : string;
+  first_stop_zipcode : string;
+  last_stop_zipcode : string;
+  up_down_type : string;
+  trip_status : string;
+  trip_amenities : string;
+  first_mile : int;
+  last_mile : int;
+  trip_id : int;
+  src_day_change : int;
+  dest_day_change : int;
+  dest_arrival_date : string;
+  src_timezone : string;
+  dest_timezone : string;
+  src_travel_date : string;
+  partner_trip : string;
+  dest_stop_facility_fee_tool_tip : string;
+  booking_fee_tool_tip : string;
 }
 
 type data_search_data = {
