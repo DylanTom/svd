@@ -91,18 +91,19 @@ let input_validate_tests =
 (** MEGABUS MAKE QUERY TESTS **)
 
 let make_query_test (name : string) (expected_output : string)
-    (input_fn : query -> string) (date : string) (dest : string)
+    (input_fn : Megabus.query -> string) (date : string) (dest : string)
     (origin : string) : test =
   name >:: fun _ ->
-  assert_equal expected_output (make_query date dest origin |> input_fn)
+  assert_equal expected_output (Megabus.make_query date dest origin |> input_fn)
 
 let make_query_tests =
   [
-    make_query_test "make query departure date" "2022-10-21" get_departure_date
-      "2022-10-21" "123" "511";
-    make_query_test "make query origin" "511" get_orig "2022-10-21" "123" "511";
-    make_query_test "make query destination" "123" get_dest "2022-10-21" "123"
-      "511";
+    make_query_test "make query departure date" "2022-10-21"
+      Megabus.get_departure_date "2022-10-21" "123" "511";
+    make_query_test "make query origin" "511" Megabus.get_orig "2022-10-21"
+      "123" "511";
+    make_query_test "make query destination" "123" Megabus.get_dest "2022-10-21"
+      "123" "511";
   ]
 
 (******************************************************************************)
@@ -118,8 +119,19 @@ let megabus_city_test (name : string) (expected_output : int) (input : string) :
   assert_equal expected_output
     (City.megabus_of_city input (City.from_json cities))
 
+let ourbus_city_test (name : string) (expected_output : string) (input : string)
+    : test =
+  name >:: fun _ ->
+  assert_equal expected_output
+    (City.ourbus_of_city input (City.from_json cities))
+
 let city_validate_tests =
-  [ megabus_city_test "NYC" 123 "NYC"; megabus_city_test "ITH" 511 "ITH" ]
+  [
+    megabus_city_test "NYC" 123 "NYC";
+    megabus_city_test "ITH" 511 "ITH";
+    ourbus_city_test "NYC" "New%20York,%20NY" "NYC";
+    ourbus_city_test "ITH" "Ithaca,%20NY" "ITH";
+  ]
 
 (******************************************************************************)
 

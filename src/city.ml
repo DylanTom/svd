@@ -28,10 +28,11 @@ let from_json j = { cities = j |> member "cities" |> to_list |> map_cities }
 (******************************************************************************)
 
 let output_cities t =
-let rec output_cities_helper acc = function
-  | [] -> acc
-  | h :: t -> h.city_name :: output_cities_helper acc t
-in output_cities_helper [] t.cities
+  let rec output_cities_helper acc = function
+    | [] -> acc
+    | h :: t -> h.city_name :: output_cities_helper acc t
+  in
+  output_cities_helper [] t.cities
 
 let rec find_city c company = function
   | [] -> raise Not_found
@@ -47,9 +48,10 @@ let megabus_of_city c t =
     | _ -> failwith "Impossible"
   with Not_found -> 0
 
-let ourbus_of_city c t = 
+let ourbus_of_city c t =
   try
-    match find_city c "megabus" t.cities with
+    match find_city c "ourbus" t.cities with
     | String s -> s
     | _ -> failwith "Impossible"
-  with Not_found -> ""
+  with
+  | Not_found -> ""

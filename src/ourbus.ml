@@ -40,7 +40,7 @@ let get_uri q =
     ]
   in
   let query_params = concat to_build in
-  "https://www.ourbus.com/booknow?" ^ query_params
+  {|"https://www.ourbus.com/booknow?|} ^ query_params ^ {|"|}
 
 let require msg = function
   | Some a -> a
@@ -49,7 +49,9 @@ let require msg = function
 let url =
   {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/13/2022&adult=1"|}
 
-let run_parser = Sys.command ("python3 script/parse_web.py " ^ url)
+let run_parser q =
+  let url = get_uri q in
+  Sys.command ("python3 script/parse_web.py " ^ url)
 
 type voucher = {
   id : int;

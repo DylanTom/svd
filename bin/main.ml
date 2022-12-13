@@ -155,15 +155,25 @@ let execute () =
   let megabus_destination =
     City.megabus_of_city inputs.(1) (City.from_json cities)
   in
-  let query =
+  let megabus_query =
     Megabus.make_query
       (String.concat "-" [ inputs.(4); inputs.(2); inputs.(3) ])
       (string_of_int megabus_destination)
       (string_of_int megabus_origin)
   in
-  Megabus.run query
+  let ourbus_origin = City.ourbus_of_city inputs.(0) (City.from_json cities) in
+  let ourbus_destination =
+    City.ourbus_of_city inputs.(1) (City.from_json cities)
+  in
+  let ourbus_query =
+    Ourbus.make_query
+      (String.concat "/" [ inputs.(2); inputs.(3); inputs.(4) ])
+      ourbus_destination ourbus_origin
+  in
+  let ourbus_output = Ourbus.run_parser ourbus_query in
+  (* ourbus_output |> string_of_int |> print_endline; *)
+  Megabus.run megabus_query
 (* Ourbus Handler *)
-
 let rec output_handler () =
   execute ();
   ANSITerminal.print_string [ ANSITerminal.cyan ]
