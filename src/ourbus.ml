@@ -44,6 +44,45 @@ let require msg = function
   | None -> failwith msg
 
 let url =
-  {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/08/2022&adult=1"|}
+  {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/13/2022&adult=1"|}
 
 let run_parser = Sys.command ("python3 script/parse_web.py " ^ url)
+
+type voucher = {
+  id : int;
+  coupon_id : int;
+  voucher_name : string;
+}
+
+type importantinfo = {
+  pass_id : int;
+  route_id : int;
+}
+
+type similarSearch = {
+  pass_id : int;
+  route_id : int;
+}
+
+type data_search_data = {
+  date : string;
+  lowest_price : float;
+  route_available : bool;
+  seats_full : bool;
+}
+
+type searchedRouteList = {
+  voucher : voucher list;
+  importantinfo : importantinfo list;
+  similarSearch : similarSearch list;
+  date_search_data : data_search_data list;
+  statusCode : int;
+}
+
+type t = {
+  searchedRouteList : searchedRouteList list;
+  typeType : string;
+  numberOfAdults : string;
+  date_month : string;
+  dateMonthType : string;
+}
