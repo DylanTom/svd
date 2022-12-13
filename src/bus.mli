@@ -6,7 +6,11 @@
 
     For examples, the specifications in this interface reference the example bus
     query found in [test_data/bus.json]. *)
+type route
+(** The type of values representing a single bus route. *)
 
+type buses
+(** The type of values representing all routes for each company. *)
 type t
 (** The abstract type of values representing all valid bus routes from each
     company. *)
@@ -24,15 +28,15 @@ val find_company : string -> t -> t
     not in the list. If it does exist in the list, it return the company in json
     format.*)
 
-val route_from_list : t -> string list
-(** [route_from_list lst] is a recursive function that takes the input [lst] of
-    type buses list and outputs a list of the route from type with the type
-    string list*)
+val route_from_list : t -> string -> string list
+(** [route_from_list buses c] is a recursive function that takes the input
+    [buses] of type t and outputs a list of the route from type with the type
+    string list for company [c] *)
 
-val route_destination_list : t -> string list
-(** [route_destination_list lst] is a recursive function that takes the input
-    [lst] of type buses list and outputs a list of the route destination type
-    with the type string list*)
+val route_destination_list : t -> string -> string list
+(** [route_destination_list buses c] is a recursive function that takes the input
+    [buses] of type buses list and outputs a list of the route destination type
+    with the type string list [c]*)
 
 val get_possible_dates : string list -> string list -> string list
 (** [get_possible_dates route_from_list route_destination_list] is a recursive
