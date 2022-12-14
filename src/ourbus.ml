@@ -47,7 +47,7 @@ let require msg = function
   | None -> failwith msg
 
 let url =
-  {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/13/2022&adult=1"|}
+  {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/17/2022&adult=1"|}
 
 let run_parser q =
   let url = get_uri q in
