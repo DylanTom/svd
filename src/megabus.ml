@@ -190,6 +190,17 @@ let date h =
   in
   String.concat ~sep:"/" m_d_y
 
+let notes_helper loc =
+  match loc.cityName with
+  | "New York, NY" -> "Port Authority Bus Terminal"
+  | "Ithaca, NY" -> (
+      match String.index_from loc.stopName 0 '-' with
+      | Some x -> String.sub loc.stopName 0 x
+      | None -> failwith "impossible")
+  | "Binghamton, NY" -> "Greater Binghamton Transportation Center"
+  | "Syracuse, NY" -> "Syracuse Regional Transit Center"
+  | _ -> failwith "impossible"
+
 let get_info journey =
   let rec info_helper acc lst =
     match lst with
@@ -207,6 +218,7 @@ let get_info journey =
               (let x = string_of_float h.price in
                if String.length x = 5 then x else x ^ "0");
             ];
+          notes_helper h.origin ^ "\t-->\t" ^ notes_helper h.destination;
         ]
         :: info_helper acc t
   in

@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import json
 import sys
 
-def run (url):
+
+def run(url):
     # Make a GET request to the URL
     response = requests.get(url)
 
@@ -21,6 +22,7 @@ def run (url):
 
     with open("data/ourbus.json", "w") as f:
         json.dump(ourbus_object, f, indent=4)
+
 
 if __name__ == "__main__":
     run(sys.argv[1])

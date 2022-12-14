@@ -47,7 +47,7 @@ let require msg = function
   | None -> failwith msg
 
 let url =
-  {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/17/2022&adult=1"|}
+  {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/13/2022&adult=1"|}
 
 let run_parser q =
   let url = get_uri q in
@@ -225,6 +225,28 @@ let date h =
   in
   String.concat "/" m_d_y
 
+let notes loc =
+  match loc.src_stop_name with
+  | "New York, NY" | "Ithaca, NY" ->
+      String.sub loc.src_landmark 0 (String.index_from loc.src_landmark 0 '-')
+  | "Binghamton, NY" -> "Greater Binghamton Bus Terminal"
+  | "Syracuse, NY" ->
+      let x = loc.src_landmark in
+      if String.sub x 0 4 = "Wave" then "Waverly Ave.   "
+      else "Destiny USA Mall"
+  | _ -> loc.src_landmark
+
+let note loc =
+  match loc.dest_stop_name with
+  | "New York, NY" | "Ithaca, NY" ->
+      String.sub loc.dest_landmark 0 (String.index_from loc.dest_landmark 0 '-')
+  | "Binghamton, NY" -> "Greater Binghamton Bus Terminal"
+  | "Syracuse, NY" ->
+      let x = loc.dest_landmark in
+      if String.sub x 0 4 = "Wave" then "Waverly Ave.   "
+      else "Destiny USA Mall"
+  | _ -> loc.dest_landmark
+
 let get_info route =
   let rec info_helper acc lst =
     match lst with
@@ -288,3 +310,4 @@ let parse_json json q =
     company = "Ourbus";
     path = parse_json_helper [] route.searchedRouteList.importantinfo;
   }
+
