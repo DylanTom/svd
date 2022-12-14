@@ -51,6 +51,24 @@ end
 
 module MegabusCheck : MegabusSig = Megabus
 
+module type OurbusSig = sig
+  type t
+  type query
+  type vehicle
+
+  val get_departure_date : query -> string
+  val get_dest : query -> string
+  val get_orig : query -> string
+  val make_query : string -> string -> string -> query
+  val run_parser : query -> int
+  val from_json : Yojson.Basic.t -> t
+  (* val get_price : t -> float list
+  val get_info : t -> string list list *)
+  val parse_json : Yojson.Basic.t -> query -> vehicle
+end
+
+module OurbusCheck : OurbusSig = Ourbus
+
 let verify_hours hours =
   let rec verify acc = function
     | [] -> acc

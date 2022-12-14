@@ -8,4 +8,4 @@ pip3 install -r requirements.txt
 # OCaml Setup
 opam update
 opam upgrade
-opam install -y tls mechaml core core_unix
+opam install -y tls mechaml core core_unix ANSITerminal
