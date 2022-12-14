@@ -116,6 +116,8 @@ let make_mb_query_tests =
       "2022-11-15" "0" "93";
     make_mb_query_test "make query destination 3" "511" Megabus.get_dest
       "2021-12-14" "511" "0";
+    make_mb_query_test "make query destination 4" "93" Megabus.get_dest
+      "2022-01-05" "93" "123";
   ]
 
 (******************************************************************************)
@@ -147,10 +149,14 @@ let make_ob_query_tests =
       Ourbus.get_dest "2022-11-15" "Syracuse,%20NY" "Binghamton,%20NY";
     make_ob_query_test "make query destination 3" "Ithaca,%20NY" Ourbus.get_dest
       "2021-12-14" "Ithaca,%20NY" "Syracuse,%20NY";
-    make_ob_query_test "make query passengers" "1" Ourbus.get_passengers
+    make_ob_query_test "make query destination 4" "Binghamton,%20NY"
+      Ourbus.get_dest "2022-01-05" "Binghamton,%20NY" "New%20York,%20NY";
+    make_ob_query_test "make query passengers 1" "1" Ourbus.get_passengers
       "2022-10-21" "Ithaca,%20NY" "New%20York,%20NY";
-    make_ob_query_test "make query passengers" "1" Ourbus.get_passengers
+    make_ob_query_test "make query passengers 2" "1" Ourbus.get_passengers
       "2022-11-15" "Syracuse,%20NY" "Binghamton,%20NY";
+    make_ob_query_test "make query passengers 3" "1" Ourbus.get_passengers
+      "2022-01-05" "Ithaca,%20NY" "Binghamton,%20NY";
   ]
 
 (******************************************************************************)
