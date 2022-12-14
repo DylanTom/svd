@@ -2,6 +2,12 @@
 
 Unless stated otherwise, execute all commands in the root directory of the project folder `svd`.
 
+## Prerequisite
+If you do not have OCaml installed, follow this guide
+
+https://cs3110.github.io/textbook/chapters/preface/install.html
+
+
 ## Automatic Setup
 ```
 make install
@@ -14,15 +20,11 @@ make play
 ``` 
 
 ## Manual Setup
-If you do not have OCaml installed, follow this guide
-
-https://cs3110.github.io/textbook/chapters/preface/install.html
-
 Once you have installed the CS 3110 OCaml OPAM switch, you will need to install the following packages by executing:
 ```
 opam update
 opam upgrade
-opam install -y mechaml tls core core_unix
+opam install -y mechaml tls core core_unix ANSITerminal
 ```
 
 Additional Package Description:

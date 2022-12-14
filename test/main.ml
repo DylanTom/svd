@@ -145,7 +145,7 @@ let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json")
 
 let test_test =
   [
-    ( "test" >:: fun _ ->
+    ( "get_price_test" >:: fun _ ->
       assert_equal
         [ 71.88; 44.99; 44.99; 44.99; 47.99; 47.99; 47.99 ]
         (Megabus.get_price (Megabus.from_json megabus)) );

@@ -36,12 +36,12 @@ type vehicle
 val from_json : Yojson.Basic.t -> t
 (** [from_json j] returns a parsed JSON of type t from a Yojson object. This
     specifically maps Ourbus output to the return type that is needed. *)
-
-val get_price : t -> float list
+(* 
+val get_price : t -> float list *)
 (** [get_price j] returns a float list of prices of all bus routes on a given
     output from Ourbus. *)
 
-val get_info : t -> string list list
+(* val get_info : t -> string list list *)
 (** [get_info j] returns a list of list of outputs which indicate origin,
     destination, departure, arrival, and price. This information is required for
     user display in the terminal *)
