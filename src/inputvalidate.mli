@@ -4,7 +4,7 @@
     matches the required format. *)
 
 val valid_cities : string list
-(** [cities] is the list of currently supported cities.  *)
+(** [valid_cities] is the list of currently supported cities.  *)
 
 val valid_city : string -> bool
 (** [valid_city c] returns whether city is in the list of valid cities. Requires

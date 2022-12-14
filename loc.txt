@@ -1,2 +1,3 @@
 Explaining our LOC:
 
+Throughout this project, we have worked through VS Code live share. As a result, some of the metrics on github were skewed.  In addition, we worked on different github branches and as a result, github only attributed the # of commits and LOC to the merger. We can attest that we each contributed approximately 3-400 LOC/person.
