@@ -91,43 +91,13 @@ type importantinfo = {
 }
 
 type similarSearch = {
-  pass_id : int;
-  route_id : int;
-  src_sm_id : int;
-  dest_sm_id : int;
-  src_stop_id : int;
-  dest_stop_id : int;
-  last_stop_id : int;
-  available_seat : int;
-  default_search : int;
-  disclaimer_flag : int;
-  src_location : src_location list;
-  dest_location : dest_location list;
-  src_stop_name : string;
-  dest_stop_name : string;
-  src_landmark : string;
-  dest_landmark : string;
-  src_stop_eta : string;
-  dest_stop_eta : string;
-  src_stop_path : string;
-  dest_stop_path : string;
-  transport_provider : string;
-  pass_amount : float;
-  booking_fee : float;
-  facility_fee : float;
-  travel_date : string;
+  (* pass_id : int; route_id : int; src_sm_id : int; dest_sm_id : int;
+     src_stop_id : int; dest_stop_id : int; last_stop_id : int; available_seat :
+     int; default_search : int; disclaimer_flag : int; src_location :
+     src_location list; dest_location : dest_location list; src_stop_name :
+     string; last_stop_eta : string; src_zipcode : string; dest_zipcode :
+     string; booking_fee : float; facility_fee : float; travel_date : string;*)
   expire_time : string;
-  route_name : string;
-  start_time : string;
-  first_stop_name : string;
-  first_stop_id : int;
-  first_stop_eta : string;
-  last_stop_name : string;
-  last_stop_eta : string;
-  src_zipcode : string;
-  dest_zipcode : string;
-  first_stop_zipcode : string;
-  last_stop_zipcode : string;
   up_down_type : string;
   trip_status : string;
   trip_amenities : string;
@@ -236,4 +206,79 @@ let from_json json =
     date_month = json |> member "date_month" |> to_string;
     dateMonthType = json |> member "dateMonthType" |> to_string;
   }
+
 (******************************************************)
+let get_price route =
+  let rec price_helper acc lst =
+    match lst with
+    | [] -> []
+    | h :: t ->
+        (h.pass_amount +. h.booking_fee +. h.facility_fee) :: price_helper acc t
+  in
+  price_helper [] route.importantinfo
+
+let date h =
+  let m_d_y =
+    [
+      String.sub h.travel_date 5 2;
+      String.sub h.travel_date 8 2;
+      String.sub h.travel_date 0 4;
+    ]
+  in
+  String.concat "/" m_d_y
+
+let get_info route =
+  let rec info_helper acc lst =
+    match lst with
+    | [] -> acc
+    | h :: t ->
+        [
+          h.src_stop_name;
+          h.dest_stop_name;
+          date h;
+          String.sub h.src_stop_eta 0 5;
+          String.sub h.dest_stop_eta 0 5;
+          String.concat "$"
+            [
+              string_of_float (h.pass_amount +. h.booking_fee +. h.facility_fee);
+            ];
+        ]
+        :: info_helper acc t
+  in
+  info_helper [] route.importantinfo
+
+type journey = {
+  from : string;
+  destination : string;
+  month : int;
+  date : int;
+  year : int;
+  price : float;
+  timedepart : string;
+  timearrive : string;
+}
+
+type vehicle = {
+  company : string;
+  path : journey list;
+}
+
+let parse_json json q =
+  let route = searchedRouteList_of_json json in
+  let rec parse_json_helper acc lst =
+    match lst with
+    | [] -> acc
+    | h :: t ->
+        {
+          from = h.src_stop_name;
+          destination = h.dest_stop_name;
+          month = int_of_string (String.sub h.travel_date 5 2);
+          date = int_of_string (String.sub h.travel_date 8 2);
+          year = int_of_string (String.sub h.travel_date 0 4);
+          price = h.pass_amount +. h.booking_fee +. h.facility_fee;
+          timedepart = String.sub h.src_stop_eta 0 5;
+          timearrive = String.sub h.dest_stop_eta 0 5;
+        }
+        :: parse_json_helper acc t
+  in
+  { company = "Ourbus"; path = parse_json_helper [] route.importantinfo }
