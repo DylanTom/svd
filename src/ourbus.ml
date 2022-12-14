@@ -47,7 +47,7 @@ let require msg = function
   | None -> failwith msg
 
 let url =
-  {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/13/2022&adult=1"|}
+  {|"https://www.ourbus.com/booknow?origin=New%20York,%20NY&destination=Ithaca,%20NY&departure_date=12/17/2022&adult=1"|}
 
 let run_parser q =
   let url = get_uri q in
@@ -125,17 +125,14 @@ type data_search_data = {
 type searchedRouteList = {
   (* voucher : voucher list; *)
   importantinfo : importantinfo list;
-  (* similarSearch : similarSearch list;
-  date_search_data : data_search_data list;
-  statusCode : int; *)
+      (* similarSearch : similarSearch list; date_search_data : data_search_data
+         list; statusCode : int; *)
 }
 
 type t = {
-  searchedRouteList : searchedRouteList ;
-  (* typeType : string;
-  numberOfAdults : string;
-  date_month : string;
-  dateMonthType : string; *)
+  searchedRouteList : searchedRouteList;
+      (* typeType : string; numberOfAdults : string; date_month : string;
+         dateMonthType : string; *)
 }
 
 let importantinfo_of_json json =
@@ -184,12 +181,11 @@ let searchedRouteList_of_json json =
   {
     (* voucher = json |> member "voucher" |> to_list |> voucher_helper; *)
     importantinfo =
-      json |> member "list" |> to_list |> importantinfo_helper;
-    (* similarSearch =
-      json |> member "similarSearch" |> to_list |> similarSearch_helper;
-    date_search_data =
-      json |> member "data_search_data" |> to_list |> date_search_data_helper;
-    statusCode = json |> member "statusCode" |> to_int; *)
+      json |> member "list" |> to_list |> importantinfo_helper
+      (* similarSearch = json |> member "similarSearch" |> to_list |>
+         similarSearch_helper; date_search_data = json |> member
+         "data_search_data" |> to_list |> date_search_data_helper; statusCode =
+         json |> member "statusCode" |> to_int; *);
   }
 
 let rec searchedRouteList_helper lst =
@@ -200,15 +196,16 @@ let rec searchedRouteList_helper lst =
 let from_json json =
   {
     searchedRouteList =
-      json |> member "searchedRouteList" |> searchedRouteList_of_json;
-    (* typeType = json |> member "typeType" |> to_string;
-    numberOfAdults = json |> member "numberOfAdluts" |> to_string;
-    date_month = json |> member "date_month" |> to_string;
-    dateMonthType = json |> member "dateMonthType" |> to_string; *)
+      json |> member "searchedRouteList" |> searchedRouteList_of_json
+      (* typeType = json |> member "typeType" |> to_string; numberOfAdults =
+         json |> member "numberOfAdluts" |> to_string; date_month = json |>
+         member "date_month" |> to_string; dateMonthType = json |> member
+         "dateMonthType" |> to_string; *);
   }
 
 (******************************************************)
 let search_to_important = List.fold_left (fun acc h -> h.importantinfo) []
+
 let get_price route =
   let rec price_helper acc lst =
     match lst with
@@ -216,7 +213,7 @@ let get_price route =
     | h :: t ->
         (h.pass_amount +. h.booking_fee +. h.facility_fee) :: price_helper acc t
   in
-  price_helper [] ( route.searchedRouteList.importantinfo)
+  price_helper [] route.searchedRouteList.importantinfo
 
 let date h =
   let m_d_y =
@@ -227,8 +224,6 @@ let date h =
     ]
   in
   String.concat "/" m_d_y
-
-
 
 let get_info route =
   let rec info_helper acc lst =
@@ -241,14 +236,19 @@ let get_info route =
           date h;
           String.sub h.src_stop_eta 0 5;
           String.sub h.dest_stop_eta 0 5;
-          String.concat "$"
+          String.concat ""
             [
-              string_of_float (h.pass_amount +. h.booking_fee +. h.facility_fee);
+              "$";
+              (let x =
+                 string_of_float
+                   (h.pass_amount +. h.booking_fee +. h.facility_fee)
+               in
+               if String.length x = 5 then x else x ^ "0");
             ];
         ]
         :: info_helper acc t
   in
-  info_helper [] (route.searchedRouteList.importantinfo)
+  info_helper [] route.searchedRouteList.importantinfo
 
 type journey = {
   from : string;
@@ -284,4 +284,7 @@ let parse_json json q =
         }
         :: parse_json_helper acc t
   in
-  { company = "Ourbus"; path = parse_json_helper [] route.searchedRouteList.importantinfo} 
+  {
+    company = "Ourbus";
+    path = parse_json_helper [] route.searchedRouteList.importantinfo;
+  }

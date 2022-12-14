@@ -82,6 +82,77 @@ let rec match_year y =
     | exception End_of_file -> ()
     | y -> match_year y)
 
+let execute () =
+  let data_dir_prefix = "data" ^ Filename.dir_sep in
+
+  let cities = Yojson.Basic.from_file (data_dir_prefix ^ "cities.json") in
+  (* Megabus Handler *)
+  let megabus_origin =
+    City.megabus_of_city inputs.(0) (City.from_json cities)
+  in
+  let megabus_destination =
+    City.megabus_of_city inputs.(1) (City.from_json cities)
+  in
+  let megabus_query =
+    Megabus.make_query
+      (String.concat "-" [ inputs.(4); inputs.(2); inputs.(3) ])
+      (string_of_int megabus_destination)
+      (string_of_int megabus_origin)
+  in
+  let ourbus_origin = City.ourbus_of_city inputs.(0) (City.from_json cities) in
+  let ourbus_destination =
+    City.ourbus_of_city inputs.(1) (City.from_json cities)
+  in
+  let ourbus_query =
+    Ourbus.make_query
+      (String.concat "/" [ inputs.(2); inputs.(3); inputs.(4) ])
+      ourbus_destination ourbus_origin
+  in
+  if megabus_origin = 0 || megabus_destination = 0 then ()
+  else Megabus.run megabus_query;
+  if ourbus_origin = "" || ourbus_destination = "" then ()
+  else
+    let _ = Ourbus.run_parser ourbus_query in
+    ()
+
+let compare_helper a b =
+  let x = a |> List.rev in
+  let y = b |> List.rev in
+  match (x, y) with
+  | [], [] -> 0
+  | h1 :: t1, h2 :: t2 -> compare h1 h2
+  | _ -> 0
+
+let rec output_handler () =
+  if Sys.file_exists (data_dir_prefix ^ "megabus.json") then
+    Sys.remove (data_dir_prefix ^ "megabus.json");
+  if Sys.file_exists (data_dir_prefix ^ "ourbus.json") then
+    Sys.remove (data_dir_prefix ^ "ourbus.json");
+  execute ();
+  ANSITerminal.print_string [ ANSITerminal.cyan ]
+    "Here are some potential bus routes sorted by price. Take a look!\n";
+  print_endline "\torigin\t\tdestination\tdate\t\tdepart  arrive\tprice\tnotes";
+  try
+    let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json") in
+    let megabus_info = Megabus.get_info (Megabus.from_json megabus) in
+    print_endline "Megabus:";
+    List.iter
+      (fun x ->
+        List.iter (printf "\t%s") x;
+        printf "\n")
+      (List.sort compare_helper megabus_info);
+    try
+      let ourbus = Yojson.Basic.from_file (data_dir_prefix ^ "ourbus.json") in
+      let ourbus_info = Ourbus.get_info (Ourbus.from_json ourbus) in
+      print_endline "Ourbus:";
+      List.iter
+        (fun x ->
+          List.iter (printf "\t%s") x;
+          printf "\n")
+        (List.sort compare_helper ourbus_info)
+    with _ -> print_endline "Ourbus Query Unsuccessful"
+  with _ -> print_endline "Megabus Query Unsuccessful"
+
 let rec input_handler () =
   (* Bus From *)
   print_endline "\nPlease enter the origin you are coming from:";
@@ -140,69 +211,14 @@ let rec input_handler () =
                          NO, this is incorrect, please redo.\n";
                       print_string [] "> [Y/N] ";
                       match String.lowercase_ascii (read_line ()) with
-                      | "y" | "yes" -> print_string [] "\n"
+                      | "y" | "yes" ->
+                          print_string [] "\n";
+                          output_handler ()
                       | "n" | "no" -> input_handler ()
                       | _ -> print_string [] "Invalid token")))))
 
-let execute () =
-  let data_dir_prefix = "data" ^ Filename.dir_sep in
-
-  let cities = Yojson.Basic.from_file (data_dir_prefix ^ "cities.json") in
-  (* Megabus Handler *)
-  let megabus_origin =
-    City.megabus_of_city inputs.(0) (City.from_json cities)
-  in
-  let megabus_destination =
-    City.megabus_of_city inputs.(1) (City.from_json cities)
-  in
-  let megabus_query =
-    Megabus.make_query
-      (String.concat "-" [ inputs.(4); inputs.(2); inputs.(3) ])
-      (string_of_int megabus_destination)
-      (string_of_int megabus_origin)
-  in
-  let ourbus_origin = City.ourbus_of_city inputs.(0) (City.from_json cities) in
-  let ourbus_destination =
-    City.ourbus_of_city inputs.(1) (City.from_json cities)
-  in
-  let ourbus_query =
-    Ourbus.make_query
-      (String.concat "/" [ inputs.(2); inputs.(3); inputs.(4) ])
-      ourbus_destination ourbus_origin
-  in
-  let _ = Ourbus.run_parser ourbus_query in
-  if megabus_origin = 0 || megabus_destination = 0 then ()
-  else Megabus.run megabus_query
-
-(* Ourbus Handler *)
-let rec output_handler () =
-  execute ();
-  ANSITerminal.print_string [ ANSITerminal.cyan ]
-    "Here are some potential bus routes sorted by price. Take a look!\n";
-  print_endline "\torigin\tdestination\tdate\tdeparture\tarrival\tprice";
-  try
-    let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json") in
-    let megabus_info = Megabus.get_info (Megabus.from_json megabus) in
-    print_endline "Megabus:";
-    List.iter
-      (fun x ->
-        List.iter (printf "\t%s") x;
-        printf "\n")
-      (List.sort compare megabus_info);
-    try
-      let ourbus = Yojson.Basic.from_file (data_dir_prefix ^ "ourbus.json") in
-      let ourbus_info = Ourbus.get_info (Ourbus.from_json ourbus) in
-      print_endline "Ourbus:";
-      List.iter
-        (fun x ->
-          List.iter (printf "\t%s") x;
-          printf "\n")
-        (List.sort compare ourbus_info)
-    with _ -> print_endline "Ourbus Query Failed"
-  with _ -> print_endline "Megabus Query Failed"
-
 (** [main ()] prompts for Expedia to start*)
-let main () =
+let rec main () =
   ANSITerminal.print_string [ ANSITerminal.red ]
     "\n\
      Welcome to Expedia for buses!\n\
@@ -216,7 +232,12 @@ let main () =
 
   input_handler ();
 
-  output_handler ()
+  ANSITerminal.print_string [ ANSITerminal.green ]
+    "\nDo you want to make a new query?\nType <restart>\n";
+  print_string [] "> ";
+  match read_line () with
+  | exception End_of_file -> exit 0
+  | s -> if s = "restart" then main () else exit 0
 
 (* Execute the game engine. *)
 let () = main ()
