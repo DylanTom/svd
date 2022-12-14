@@ -131,7 +131,7 @@ type searchedRouteList = {
 }
 
 type t = {
-  searchedRouteList : searchedRouteList list;
+  searchedRouteList : searchedRouteList ;
   (* typeType : string;
   numberOfAdults : string;
   date_month : string;
@@ -200,7 +200,7 @@ let rec searchedRouteList_helper lst =
 let from_json json =
   {
     searchedRouteList =
-      json |> member "searchedRouteList" |> to_list |> searchedRouteList_helper;
+      json |> member "searchedRouteList" |> searchedRouteList_of_json;
     (* typeType = json |> member "typeType" |> to_string;
     numberOfAdults = json |> member "numberOfAdluts" |> to_string;
     date_month = json |> member "date_month" |> to_string;
@@ -216,7 +216,7 @@ let get_price route =
     | h :: t ->
         (h.pass_amount +. h.booking_fee +. h.facility_fee) :: price_helper acc t
   in
-  price_helper [] (search_to_important route.searchedRouteList)
+  price_helper [] ( route.searchedRouteList.importantinfo)
 
 let date h =
   let m_d_y =
@@ -248,7 +248,7 @@ let get_info route =
         ]
         :: info_helper acc t
   in
-  info_helper [] (search_to_important route.searchedRouteList)
+  info_helper [] (route.searchedRouteList.importantinfo)
 
 type journey = {
   from : string;
@@ -266,7 +266,7 @@ type vehicle = {
   path : journey list;
 }
 
-(* let parse_json json q =
+let parse_json json q =
   let route = from_json json in
   let rec parse_json_helper acc lst =
     match lst with
@@ -284,4 +284,4 @@ type vehicle = {
         }
         :: parse_json_helper acc t
   in
-  { company = "Ourbus"; path = parse_json_helper [] route.importantinfo } *)
+  { company = "Ourbus"; path = parse_json_helper [] route.searchedRouteList.importantinfo} 
