@@ -227,7 +227,8 @@ let date h =
 
 let notes loc =
   match loc.src_stop_name with
-  | "New York, NY" | "Ithaca, NY" ->
+  | "New York, NY" -> loc.src_landmark
+  | "Ithaca, NY" ->
       String.sub loc.src_landmark 0 (String.index_from loc.src_landmark 0 '-')
   | "Binghamton, NY" -> "Greater Binghamton Bus Terminal"
   | "Syracuse, NY" ->
@@ -238,7 +239,8 @@ let notes loc =
 
 let note loc =
   match loc.dest_stop_name with
-  | "New York, NY" | "Ithaca, NY" ->
+  | "New York, NY" -> loc.dest_landmark
+  | "Ithaca, NY" ->
       String.sub loc.dest_landmark 0 (String.index_from loc.dest_landmark 0 '-')
   | "Binghamton, NY" -> "Greater Binghamton Bus Terminal"
   | "Syracuse, NY" ->
@@ -267,6 +269,7 @@ let get_info route =
                in
                if String.length x = 5 then x else x ^ "0");
             ];
+          notes h ^ "\t-->\t" ^ note h;
         ]
         :: info_helper acc t
   in
@@ -310,4 +313,3 @@ let parse_json json q =
     company = "Ourbus";
     path = parse_json_helper [] route.searchedRouteList.importantinfo;
   }
-
