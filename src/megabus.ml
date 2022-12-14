@@ -72,9 +72,9 @@ let get_uri q =
 
 let body q =
   Client.get (Uri.of_string (get_uri q)) >>= fun (resp, body) ->
-  (* let code = resp |> Response.status |> Code.code_of_status in
-  Printf.printf "Response code: %d\n" code;
-  Printf.printf "Sucessfully queried. Data stored in data/megabus.json\n"; *)
+  (* let code = resp |> Response.status |> Code.code_of_status in Printf.printf
+     "Response code: %d\n" code; Printf.printf "Sucessfully queried. Data stored
+     in data/megabus.json\n"; *)
   body |> Cohttp_lwt.Body.to_string >|= fun body -> body
 
 let run q =
@@ -199,9 +199,14 @@ let get_info journey =
           h.origin.cityName;
           h.destination.cityName;
           date h;
-          String.sub h.departureDateTime 11 8;
-          String.sub h.arrivalDateTime 11 8;
-          String.concat [ "$"; string_of_float h.price ];
+          String.sub h.departureDateTime 11 5;
+          String.sub h.arrivalDateTime 11 5;
+          String.concat
+            [
+              "$";
+              (let x = string_of_float h.price in
+               if String.length x = 5 then x else x ^ "0");
+            ];
         ]
         :: info_helper acc t
   in
