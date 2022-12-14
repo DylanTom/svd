@@ -15,6 +15,12 @@ val get_dest : query -> string
 val get_orig : query -> string
 (** [get_orig q] returns the origin ID stored in a query *)
 
+val get_passengers : query -> string
+(** [get_passengers q] returns the total number of passengers stored in a query *)
+
+val get_uri : query -> string
+(** [get_uri q] returns the uri of the query *)
+
 val make_query : string -> string -> string -> query
 (** [make_query date dest orig] returns a query with [departureDate],
     [destinationID], and [originID] updated appropriately.
@@ -37,9 +43,8 @@ val from_json : Yojson.Basic.t -> t
 (** [from_json j] returns a parsed JSON of type t from a Yojson object. This
     specifically maps Ourbus output to the return type that is needed. *)
 
-val get_price : t -> float list
-(** [get_price j] returns a float list of prices of all bus routes on a given
-    output from Ourbus. *)
+(* val get_price : t -> float list (** [get_price j] returns a float list of
+   prices of all bus routes on a given output from Ourbus. *) *)
 
 val get_info : t -> string list list
 (** [get_info j] returns a list of list of outputs which indicate origin,

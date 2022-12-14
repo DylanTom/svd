@@ -63,7 +63,7 @@ let input_validate_tests =
     input_validate_city_test "validate city 1" true "NYC";
     input_validate_city_test "validate city 2" true "nYc";
     input_validate_city_test "validate city 3" true "nyc";
-    input_validate_city_test "validate city 4" true "BoS";
+    input_validate_city_test "validate city 4" false "BoS";
     input_validate_city_test "validate city 5" true "    Ith ";
     input_validate_city_test "validate city 6" false "svd";
     input_validate_city_test "validate city 7" false "123";
@@ -90,24 +90,68 @@ let input_validate_tests =
 (******************************************************************************)
 (** MEGABUS MAKE QUERY TESTS **)
 
-let make_query_test (name : string) (expected_output : string)
+let make_mb_query_test (name : string) (expected_output : string)
     (input_fn : Megabus.query -> string) (date : string) (dest : string)
     (origin : string) : test =
   name >:: fun _ ->
   assert_equal expected_output (Megabus.make_query date dest origin |> input_fn)
 
-let make_query_tests =
+let make_mb_query_tests =
   [
-    make_query_test "make query departure date" "2022-10-21"
+    make_mb_query_test "make query departure date 1" "2022-10-21"
       Megabus.get_departure_date "2022-10-21" "123" "511";
-    make_query_test "make query origin" "511" Megabus.get_orig "2022-10-21"
+    make_mb_query_test "make query departure date 2" "2022-11-15"
+      Megabus.get_departure_date "2022-11-15" "0" "93";
+    make_mb_query_test "make query departure date 3" "2021-12-14"
+      Megabus.get_departure_date "2021-12-14" "511" "0";
+    make_mb_query_test "make query origin 1" "511" Megabus.get_orig "2022-10-21"
       "123" "511";
-    make_query_test "make query destination" "123" Megabus.get_dest "2022-10-21"
-      "123" "511";
+    make_mb_query_test "make query origin 2" "93" Megabus.get_orig "2022-11-15"
+      "0" "93";
+    make_mb_query_test "make query origin 3" "0" Megabus.get_orig "2021-12-14"
+      "511" "0";
+    make_mb_query_test "make query destination 1" "123" Megabus.get_dest
+      "2022-10-21" "123" "511";
+    make_mb_query_test "make query destination 2" "0" Megabus.get_dest
+      "2022-11-15" "0" "93";
+    make_mb_query_test "make query destination 3" "511" Megabus.get_dest
+      "2021-12-14" "511" "0";
   ]
 
 (******************************************************************************)
 (** OURBUS MAKE QUERY TESTS **)
+
+let make_ob_query_test (name : string) (expected_output : string)
+    (input_fn : Ourbus.query -> string) (dep_date : string) (dest : string)
+    (ori : string) : test =
+  name >:: fun _ ->
+  assert_equal expected_output (Ourbus.make_query dep_date dest ori |> input_fn)
+
+let make_ob_query_tests =
+  [
+    make_ob_query_test "make query departure date 1" "2022-10-21"
+      Ourbus.get_departure_date "2022-10-21" "Ithaca,%20NY" "New%20York,%20NY";
+    make_ob_query_test "make query departure date 2" "2022-11-15"
+      Ourbus.get_departure_date "2022-11-15" "Syracuse,%20NY" "Binghamton,%20NY";
+    make_ob_query_test "make query departure date 3" "2021-12-14"
+      Ourbus.get_departure_date "2021-12-14" "Ithaca,%20NY" "Syracuse,%20NY";
+    make_ob_query_test "make query origin 1" "New%20York,%20NY" Ourbus.get_orig
+      "2022-10-21" "Ithaca,%20NY" "New%20York,%20NY";
+    make_ob_query_test "make query origin 2" "Binghamton,%20NY" Ourbus.get_orig
+      "2022-11-15" "Syracuse,%20NY" "Binghamton,%20NY";
+    make_ob_query_test "make query origin 3" "Syracuse,%20NY" Ourbus.get_orig
+      "2021-12-14" "Ithaca,%20NY" "Syracuse,%20NY";
+    make_ob_query_test "make query destination 1" "Ithaca,%20NY" Ourbus.get_dest
+      "2022-10-21" "Ithaca,%20NY" "New%20York,%20NY";
+    make_ob_query_test "make query destination 2" "Syracuse,%20NY"
+      Ourbus.get_dest "2022-11-15" "Syracuse,%20NY" "Binghamton,%20NY";
+    make_ob_query_test "make query destination 3" "Ithaca,%20NY" Ourbus.get_dest
+      "2021-12-14" "Ithaca,%20NY" "Syracuse,%20NY";
+    make_ob_query_test "make query passengers" "1" Ourbus.get_passengers
+      "2022-10-21" "Ithaca,%20NY" "New%20York,%20NY";
+    make_ob_query_test "make query passengers" "1" Ourbus.get_passengers
+      "2022-11-15" "Syracuse,%20NY" "Binghamton,%20NY";
+  ]
 
 (******************************************************************************)
 
@@ -132,8 +176,12 @@ let city_validate_tests =
   [
     megabus_city_test "NYC" 123 "NYC";
     megabus_city_test "ITH" 511 "ITH";
+    megabus_city_test "SYR" 0 "SYR";
+    megabus_city_test "BING" 93 "BING";
     ourbus_city_test "NYC" "New%20York,%20NY" "NYC";
     ourbus_city_test "ITH" "Ithaca,%20NY" "ITH";
+    ourbus_city_test "SYR" "Syracuse,%20NY" "SYR";
+    ourbus_city_test "BING" "Binghamton,%20NY" "BING";
   ]
 
 (******************************************************************************)
@@ -154,7 +202,12 @@ let test_test =
 let tests =
   "svd test suite"
   >::: List.flatten
-         [ input_validate_tests; make_query_tests; city_validate_tests ]
+         [
+           input_validate_tests;
+           make_mb_query_tests;
+           make_ob_query_tests;
+           city_validate_tests;
+         ]
 
 (******************************************************************************)
 (** UNIT TESTERS **)
@@ -167,4 +220,4 @@ let run_test = Megabus.run (Megabus.make_query "2022-12-16" "123" "511")
 
 let _ =
   run_test_tt_main tests;
-  run_test;
+  run_test
