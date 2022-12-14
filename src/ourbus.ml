@@ -227,6 +227,8 @@ let date h =
   in
   String.concat "/" m_d_y
 
+let search_to_important = List.fold_left (fun acc h -> h.importantinfo) []
+
 let get_info route =
   let rec info_helper acc lst =
     match lst with
@@ -245,7 +247,7 @@ let get_info route =
         ]
         :: info_helper acc t
   in
-  info_helper [] route.importantinfo
+  info_helper [] (search_to_important route.searchedRouteList)
 
 type journey = {
   from : string;

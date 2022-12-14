@@ -72,9 +72,9 @@ let get_uri q =
 
 let body q =
   Client.get (Uri.of_string (get_uri q)) >>= fun (resp, body) ->
-  let code = resp |> Response.status |> Code.code_of_status in
+  (* let code = resp |> Response.status |> Code.code_of_status in
   Printf.printf "Response code: %d\n" code;
-  Printf.printf "Sucessfully queried. Data stored in data/megabus.json\n";
+  Printf.printf "Sucessfully queried. Data stored in data/megabus.json\n"; *)
   body |> Cohttp_lwt.Body.to_string >|= fun body -> body
 
 let run q =

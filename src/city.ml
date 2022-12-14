@@ -44,13 +44,15 @@ let rec find_city c company = function
 let megabus_of_city c t =
   try
     match find_city c "megabus" t.cities with
+    | Int 0 -> raise Not_found
     | Int i -> i
-    | _ -> failwith "Impossible"
-  with Not_found -> 0
+    | _ -> failwith "impossible"
+  with Not_found -> 0 
 
 let ourbus_of_city c t =
   try
     match find_city c "ourbus" t.cities with
+    | String "" -> raise Not_found
     | String s -> s
     | _ -> failwith "Impossible"
   with

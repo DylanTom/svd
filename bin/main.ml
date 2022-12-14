@@ -170,22 +170,27 @@ let execute () =
       (String.concat "/" [ inputs.(2); inputs.(3); inputs.(4) ])
       ourbus_destination ourbus_origin
   in
-  let ourbus_output = Ourbus.run_parser ourbus_query in
-  (* ourbus_output |> string_of_int |> print_endline; *)
+  let _ = Ourbus.run_parser ourbus_query in
   Megabus.run megabus_query
+
 (* Ourbus Handler *)
 let rec output_handler () =
   execute ();
   ANSITerminal.print_string [ ANSITerminal.cyan ]
     "Here are some potential bus routes sorted by price. Take a look!\n";
   let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json") in
-  let info = Megabus.get_info (Megabus.from_json megabus) in
-  print_endline "origin\tdest\tdate\tprice";
+  let _ = Yojson.Basic.from_file (data_dir_prefix ^ "ourbus.json") in
+  let megabus_info = Megabus.get_info (Megabus.from_json megabus) in
+  (* let ourbus_info = Ourbus.get_info (Ourbus.from_json ourbus) in *)
+  print_endline "\torigin\tdestination\tdate\tdeparture\tarrival\tprice";
+  print_endline "Megabus:";
   List.iter
     (fun x ->
-      List.iter (printf "%s\t") x;
+      List.iter (printf "\t%s") x;
       printf "\n")
-    (List.sort compare info)
+    (List.sort compare megabus_info);
+  print_endline "Ourbus:"
+
 
 (** [main ()] prompts for Expedia to start*)
 let main () =
@@ -193,6 +198,8 @@ let main () =
     "\n\
      Welcome to Expedia for buses!\n\
      The suggested cities to travel to and from are:\n\
+     As this is a system in development, there is only a small support of \
+     cities.\n\
      \t";
 
   ANSITerminal.print_string [ ANSITerminal.red ]

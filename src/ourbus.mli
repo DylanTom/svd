@@ -16,3 +16,9 @@ val make_query : string -> string -> string -> query
 val run_parser : query -> int
 (* [run_parser url] runs a query to Ourbus given a [url]. It calls
    "script/parse_web.py" as a helper function. *)
+
+type t 
+
+val from_json : Yojson.Basic.t -> t
+
+   val get_info : t -> string list list

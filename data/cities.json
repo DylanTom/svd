@@ -11,49 +11,14 @@
 			"Ourbus": "Ithaca,%20NY"
 		},
 		{
-			"city": "BOS",
-			"Megabus": 511,
-			"Ourbus": "Ithaca,%20NY"
+			"city": "SYR",
+			"Megabus": 0,
+			"Ourbus": "Syracuse,%20NY"
 		},
 		{
-			"city": "CHI",
-			"Megabus": 511,
-			"Ourbus": "Ithaca,%20NY"
-		},
-		{
-			"city": "ATL",
-			"Megabus": 511,
-			"Ourbus": "Ithaca,%20NY"
-		},
-		{
-			"city": "MTL",
-			"Megabus": 511,
-			"Ourbus": "Ithaca,%20NY"
-		},
-		{
-			"city": "TOR",
-			"Megabus": 511,
-			"Ourbus": "Ithaca,%20NY"
-		},
-		{
-			"city": "LA",
-			"Megabus": 511,
-			"Ourbus": "Ithaca,%20NY"
-		},
-		{
-			"city": "SF",
-			"Megabus": 511,
-			"Ourbus": "Ithaca,%20NY"
-		},
-		{
-			"city": "EWR",
-			"Megabus": 511,
-			"Ourbus": "Ithaca,%20NY"
-		},
-		{
-			"city": "DEN",
-			"Megabus": 511,
-			"Ourbus": "Ithaca,%20NY"
+			"city": "BING",
+			"Megabus": 93,
+			"Ourbus": "Binghamton,%20NY"
 		}
 	]
 }

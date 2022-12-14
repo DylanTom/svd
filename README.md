@@ -1,4 +1,4 @@
-# svd (Final Name TBD)
+# OCaml x Expedia 
 Get the best deals on buses back home!
 
 ---
@@ -8,7 +8,7 @@ Get the best deals on buses back home!
 2. Follow instructions in `INSTALL.md`
 
 ## About the Project
-(Last Updated 10/21/22) Our current vision for the system we’re building is a terminal-based application that scrapes data from websites providing bus services such as MegaBus and OurBus and outputs all available routes based on user input. This application will also have filtering features based on start date, end date, time, location, price, and relevancy. The application will eventually have some form of automatic ranking system to rank all available bus routes for the user based on the parameters entered. 
+Our current vision for the system we’re building is a terminal-based application that scrapes data from websites providing bus services such as MegaBus and OurBus and outputs all available routes based on user input. This application will also have filtering features based on start date, end date, time, location, price, and relevancy. The application will eventually have some form of automatic ranking system to rank all available bus routes for the user based on the parameters entered. 
 
 ---
 

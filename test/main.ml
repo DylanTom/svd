@@ -107,6 +107,9 @@ let make_query_tests =
   ]
 
 (******************************************************************************)
+(** OURBUS MAKE QUERY TESTS **)
+
+(******************************************************************************)
 
 (** CITY CONVERSION VALIDATE TESTS **)
 let data_dir_prefix = "data" ^ Filename.dir_sep
@@ -158,12 +161,6 @@ let tests =
 
 let run_test = Megabus.run (Megabus.make_query "2022-12-16" "123" "511")
 
-let run_test_2 =
-  [
-    ( "Ourbus Python Script" >:: fun _ ->
-      assert_equal 3 Ourbus.run_parser ~printer:string_of_int );
-  ]
-
 (******************************************************************************)
 (** MAIN TEST **)
 (******************************************************************************)
@@ -171,4 +168,3 @@ let run_test_2 =
 let _ =
   run_test_tt_main tests;
   run_test;
-  run_test_2
