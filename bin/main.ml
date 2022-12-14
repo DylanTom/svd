@@ -188,20 +188,18 @@ let rec output_handler () =
       (fun x ->
         List.iter (printf "\t%s") x;
         printf "\n")
-      (List.sort compare megabus_info)
-  with _ ->
-    print_endline "Megabus Query Failed";
-  try 
-  let ourbus = Yojson.Basic.from_file (data_dir_prefix ^ "ourbus.json") in
-  let ourbus_info = Ourbus.get_info (Ourbus.from_json ourbus) in
-  print_endline "Ourbus:";
-  List.iter
-      (fun x ->
-        List.iter (printf "\t%s") x;
-        printf "\n")
-      (List.sort compare ourbus_info)
-  with _ ->
-    print_endline "Ourbus Query Failed"
+      (List.sort compare megabus_info);
+    try
+      let ourbus = Yojson.Basic.from_file (data_dir_prefix ^ "ourbus.json") in
+      let ourbus_info = Ourbus.get_info (Ourbus.from_json ourbus) in
+      print_endline "Ourbus:";
+      List.iter
+        (fun x ->
+          List.iter (printf "\t%s") x;
+          printf "\n")
+        (List.sort compare ourbus_info)
+    with _ -> print_endline "Ourbus Query Failed"
+  with _ -> print_endline "Megabus Query Failed"
 
 (** [main ()] prompts for Expedia to start*)
 let main () =
