@@ -30,6 +30,8 @@ let month_day =
 let valid_city c =
   List.mem (c |> String.trim |> String.uppercase_ascii) valid_cities
 
+let currentTime = Unix.localtime (Unix.time ())
+
 let valid_month m =
   try int_of_string m >= 1 && int_of_string m <= 12 with Failure _ -> false
 
@@ -42,10 +44,7 @@ let valid_day m d =
       if int_of_string d <= max_d && int_of_string d > 0 then true else false
   with Failure _ -> false
 
-let currentTime = Unix.localtime (Unix.time ())
-
-let valid_year y =
-  try int_of_string y >= currentTime.tm_year + 1900 with Failure _ -> false
+let valid_year y = try int_of_string y >= 0 with Failure _ -> false
 
 let rec find m = function
   | [] -> None
@@ -53,7 +52,16 @@ let rec find m = function
 
 let valid_date m d y =
   try
-    if int_of_string y < 0 then false
+    if valid_year y && int_of_string y = currentTime.tm_year + 1900 then
+      if
+        valid_month m
+        && int_of_string m >= currentTime.tm_mon + 1
+        && valid_day m d
+        && int_of_string d >= currentTime.tm_mday
+      then true
+      else false
+    else if valid_year y && int_of_string y > currentTime.tm_year + 1900 then
+      if valid_month m && valid_day m d then true else false
     else if int_of_string m <> 2 then
       match find m month_day with
       | None -> false
