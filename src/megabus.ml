@@ -199,7 +199,7 @@ let notes_helper loc =
       | None -> failwith "impossible")
   | "Binghamton, NY" -> "Greater Binghamton Transportation Center"
   | "Syracuse, NY" -> "Syracuse Regional Transit Center"
-  | _ -> failwith "impossible"
+  | _ -> loc.stopName
 
 let get_info journey =
   let rec info_helper acc lst =

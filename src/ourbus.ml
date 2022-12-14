@@ -122,18 +122,8 @@ type data_search_data = {
   seats_full : bool;
 }
 
-type searchedRouteList = {
-  (* voucher : voucher list; *)
-  importantinfo : importantinfo list;
-      (* similarSearch : similarSearch list; date_search_data : data_search_data
-         list; statusCode : int; *)
-}
-
-type t = {
-  searchedRouteList : searchedRouteList;
-      (* typeType : string; numberOfAdults : string; date_month : string;
-         dateMonthType : string; *)
-}
+type searchedRouteList = { importantinfo : importantinfo list }
+type t = { searchedRouteList : searchedRouteList }
 
 let importantinfo_of_json json =
   {
@@ -157,36 +147,13 @@ let importantinfo_of_json json =
     route_name = json |> member "route_name" |> to_string;
   }
 
-let rec voucher_helper lst =
-  match lst with
-  | [] -> []
-  | h :: t -> failwith "unimplemented"
-
 let rec importantinfo_helper lst =
   match lst with
   | [] -> []
   | h :: t -> importantinfo_of_json h :: importantinfo_helper t
 
-let rec similarSearch_helper lst =
-  match lst with
-  | [] -> []
-  | h :: t -> failwith "unimplemented"
-
-let rec date_search_data_helper lst =
-  match lst with
-  | [] -> []
-  | h :: t -> failwith "unimplemented"
-
 let searchedRouteList_of_json json =
-  {
-    (* voucher = json |> member "voucher" |> to_list |> voucher_helper; *)
-    importantinfo =
-      json |> member "list" |> to_list |> importantinfo_helper
-      (* similarSearch = json |> member "similarSearch" |> to_list |>
-         similarSearch_helper; date_search_data = json |> member
-         "data_search_data" |> to_list |> date_search_data_helper; statusCode =
-         json |> member "statusCode" |> to_int; *);
-  }
+  { importantinfo = json |> member "list" |> to_list |> importantinfo_helper }
 
 let rec searchedRouteList_helper lst =
   match lst with
@@ -196,11 +163,7 @@ let rec searchedRouteList_helper lst =
 let from_json json =
   {
     searchedRouteList =
-      json |> member "searchedRouteList" |> searchedRouteList_of_json
-      (* typeType = json |> member "typeType" |> to_string; numberOfAdults =
-         json |> member "numberOfAdluts" |> to_string; date_month = json |>
-         member "date_month" |> to_string; dateMonthType = json |> member
-         "dateMonthType" |> to_string; *);
+      json |> member "searchedRouteList" |> searchedRouteList_of_json;
   }
 
 (******************************************************)
@@ -227,24 +190,55 @@ let date h =
 
 let notes loc =
   match loc.src_stop_name with
-  | "New York, NY" | "Ithaca, NY" ->
-      String.sub loc.src_landmark 0 (String.index_from loc.src_landmark 0 '-')
+  | "New York, NY" ->
+      let x = String.sub loc.src_landmark 0 4 in
+      if x = "Geor" then "GWB Bus Station\t\t"
+      else if x = "Madi" then "Madison Square Park\t"
+      else if x = "Park" then "Park Ave\t\t\t"
+      else if x = "Hamp" then "Hampton Jitney Bus Stop\t"
+      else if x = "42nd" then "42nd Street and 9th Avenue"
+      else loc.src_landmark
+  | "Ithaca, NY" -> (
+      try
+        String.sub loc.src_landmark 0 (String.index_from loc.src_landmark 0 '-')
+      with invalid_arg -> (
+        try
+          String.sub loc.src_landmark 0
+            (String.index_from loc.src_landmark 0 ',')
+        with invalid_arg -> loc.src_landmark))
   | "Binghamton, NY" -> "Greater Binghamton Bus Terminal"
   | "Syracuse, NY" ->
-      let x = loc.src_landmark in
-      if String.sub x 0 4 = "Wave" then "Waverly Ave.   "
-      else "Destiny USA Mall"
+      let x = String.sub loc.src_landmark 0 4 in
+      if x = "Wave" then "Waverly Avenue\t\t"
+      else if x = "Dest" then "Destiny USA Mall\t"
+      else loc.src_landmark
   | _ -> loc.src_landmark
 
 let note loc =
   match loc.dest_stop_name with
-  | "New York, NY" | "Ithaca, NY" ->
-      String.sub loc.dest_landmark 0 (String.index_from loc.dest_landmark 0 '-')
+  | "New York, NY" ->
+      let x = String.sub loc.dest_landmark 0 4 in
+      if x = "Geor" then "GWB Bus Station\t\t"
+      else if x = "Madi" then "Madison Square Park\t"
+      else if x = "Park" then "Park Ave\t\t\t"
+      else if x = "Hamp" then "Hampton Jitney Bus Stop"
+      else if x = "42nd" then "42nd Street and 9th Avenue"
+      else loc.dest_landmark
+  | "Ithaca, NY" -> (
+      try
+        String.sub loc.dest_landmark 0
+          (String.index_from loc.dest_landmark 0 '-')
+      with _ -> (
+        try
+          String.sub loc.dest_landmark 0
+            (String.index_from loc.dest_landmark 0 '-')
+        with _ -> loc.dest_landmark))
   | "Binghamton, NY" -> "Greater Binghamton Bus Terminal"
   | "Syracuse, NY" ->
-      let x = loc.dest_landmark in
-      if String.sub x 0 4 = "Wave" then "Waverly Ave.   "
-      else "Destiny USA Mall"
+      let x = String.sub loc.dest_landmark 0 4 in
+      if x = "Wave" then "Waverly Avenue\t\t"
+      else if x = "Dest" then "Destiny USA Mall\t"
+      else loc.dest_landmark
   | _ -> loc.dest_landmark
 
 let get_info route =
@@ -267,6 +261,7 @@ let get_info route =
                in
                if String.length x = 5 then x else x ^ "0");
             ];
+          notes h ^ "\t-->\t" ^ note h;
         ]
         :: info_helper acc t
   in
@@ -310,4 +305,3 @@ let parse_json json q =
     company = "Ourbus";
     path = parse_json_helper [] route.searchedRouteList.importantinfo;
   }
-

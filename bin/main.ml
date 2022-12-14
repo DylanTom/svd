@@ -2,6 +2,7 @@ open ANSITerminal
 open Printf
 open Svd
 open Megabus
+open Ourbus
 open Inputvalidate
 open Printf
 
@@ -151,7 +152,17 @@ let rec output_handler () =
           printf "\n")
         (List.sort compare_helper ourbus_info)
     with _ -> print_endline "Ourbus Query Unsuccessful"
-  with _ -> print_endline "Megabus Query Unsuccessful"
+  with _ -> print_endline "Megabus Query Unsuccessful";
+  try
+    let ourbus = Yojson.Basic.from_file (data_dir_prefix ^ "ourbus.json") in
+    let ourbus_info = Ourbus.get_info (Ourbus.from_json ourbus) in
+    print_endline "Ourbus:";
+    List.iter
+      (fun x ->
+        List.iter (printf "\t%s") x;
+        printf "\n")
+      (List.sort compare_helper ourbus_info)
+  with _ -> print_endline "Ourbus Query Unsuccessful"
 
 let rec input_handler () =
   (* Bus From *)
