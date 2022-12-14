@@ -519,7 +519,7 @@
                 "src_stop_id": 536,
                 "dest_stop_id": 186,
                 "last_stop_id": 340,
-                "available_seat": 32,
+                "available_seat": 31,
                 "default_search": 0,
                 "disclaimer_flag": 0,
                 "src_location": {
@@ -567,7 +567,7 @@
                 "src_timezone": "US/Eastern",
                 "dest_timezone": "US/Eastern",
                 "src_travel_date": "2022-12-26",
-                "seat_left_at_price": 2,
+                "seat_left_at_price": 1,
                 "partner_trip": 0,
                 "src_stop_facility_fee_tool_tip": "This goes towards gate rental and departure fees paid to the Port Authority of NY and NJ.",
                 "dest_stop_facility_fee_tool_tip": "This covers bus stop permit fees paid to the City of Ithaca.",
@@ -827,7 +827,7 @@
                 "src_stop_id": 198,
                 "dest_stop_id": 186,
                 "last_stop_id": 340,
-                "available_seat": 32,
+                "available_seat": 31,
                 "default_search": 0,
                 "disclaimer_flag": 0,
                 "src_location": {
@@ -875,7 +875,7 @@
                 "src_timezone": "US/Eastern",
                 "dest_timezone": "US/Eastern",
                 "src_travel_date": "2022-12-26",
-                "seat_left_at_price": 2,
+                "seat_left_at_price": 1,
                 "partner_trip": 0,
                 "dest_stop_facility_fee_tool_tip": "This covers bus stop permit fees paid to the City of Ithaca.",
                 "booking_fee_tool_tip": "Booking Fee covers the cost of payment processing and customer support. Fuel Surcharge Fee accounts for variations in fuel prices."

@@ -13,7 +13,7 @@ def run (url):
     # Find the elements on the page that contain the information you want to scrape
     rawJ = soup.find_all('script')
 
-    J1 = str(rawJ[25]).split('var defaultSearch = ')
+    J1 = str(rawJ[26]).split('var defaultSearch = ')
     J2 = J1[1].split('var onward_defaultSearch = ')[0][1:-3]
 
     ourbus_object = json.loads(J2)
