@@ -90,24 +90,40 @@ let input_validate_tests =
 (******************************************************************************)
 (** MEGABUS MAKE QUERY TESTS **)
 
-let make_query_test (name : string) (expected_output : string)
+let make_mb_query_test (name : string) (expected_output : string)
     (input_fn : Megabus.query -> string) (date : string) (dest : string)
     (origin : string) : test =
   name >:: fun _ ->
   assert_equal expected_output (Megabus.make_query date dest origin |> input_fn)
 
-let make_query_tests =
+let make_mb_query_tests =
   [
-    make_query_test "make query departure date" "2022-10-21"
+    make_mb_query_test "make query departure date" "2022-10-21"
       Megabus.get_departure_date "2022-10-21" "123" "511";
-    make_query_test "make query origin" "511" Megabus.get_orig "2022-10-21"
+    make_mb_query_test "make query origin" "511" Megabus.get_orig "2022-10-21"
       "123" "511";
-    make_query_test "make query destination" "123" Megabus.get_dest "2022-10-21"
-      "123" "511";
+    make_mb_query_test "make query destination" "123" Megabus.get_dest
+      "2022-10-21" "123" "511";
   ]
 
 (******************************************************************************)
 (** OURBUS MAKE QUERY TESTS **)
+
+let make_ob_query_test (name : string) (expected_output : string)
+    (input_fn : Ourbus.query -> string) (dep_date : string) (dest : string)
+    (ori : string) : test =
+  name >:: fun _ ->
+  assert_equal expected_output (Ourbus.make_query dep_date dest ori |> input_fn)
+
+let make_ob_query_tests =
+  [
+    make_ob_query_test "make query departure date" "2022-10-21"
+      Ourbus.get_departure_date "2022-10-21" "123" "511";
+    make_ob_query_test "make query origin" "511" Ourbus.get_orig "2022-10-21"
+      "123" "511";
+    make_ob_query_test "make query destination" "123" Ourbus.get_dest
+      "2022-10-21" "123" "511";
+  ]
 
 (******************************************************************************)
 
@@ -154,7 +170,12 @@ let test_test =
 let tests =
   "svd test suite"
   >::: List.flatten
-         [ input_validate_tests; make_query_tests; city_validate_tests ]
+         [
+           input_validate_tests;
+           make_mb_query_tests;
+           make_ob_query_tests;
+           city_validate_tests;
+         ]
 
 (******************************************************************************)
 (** UNIT TESTERS **)
@@ -167,4 +188,4 @@ let run_test = Megabus.run (Megabus.make_query "2022-12-16" "123" "511")
 
 let _ =
   run_test_tt_main tests;
-  run_test;
+  run_test
