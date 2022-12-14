@@ -194,7 +194,12 @@ let rec output_handler () =
   try 
   let ourbus = Yojson.Basic.from_file (data_dir_prefix ^ "ourbus.json") in
   let ourbus_info = Ourbus.get_info (Ourbus.from_json ourbus) in
-  print_endline "Ourbus:"
+  print_endline "Ourbus:";
+  List.iter
+      (fun x ->
+        List.iter (printf "\t%s") x;
+        printf "\n")
+      (List.sort compare ourbus_info)
   with _ ->
     print_endline "Ourbus Query Failed"
 
