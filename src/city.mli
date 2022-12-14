@@ -13,7 +13,13 @@ val from_json : Yojson.Basic.t -> t
 (** [from_json j] returns the OCaml representation of a city JSON. *)
 
 val output_cities : t -> string list
+(** [output_cities j] returns a list of cities in [j]. Requires that [j] is a
+    valid city JSON format. *)
 
 val megabus_of_city : string -> t -> int
-val ourbus_of_city : string -> t -> string
+(** [megabus_of_city c t] returns the integer mapping of the inputted city [c]
+    to its megabus code based on the parsed JSON. *)
 
+val ourbus_of_city : string -> t -> string
+(** [ourbus_of_city c t] returns the string mapping of the inputted city [c] to
+    its ourbus code based on the parsed JSON. *)

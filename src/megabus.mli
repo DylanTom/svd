@@ -30,9 +30,23 @@ type t
 (** The abstract type representing the OCaml representation of a Megabus JSON *)
 
 type vehicle
-(** The abstract type representing the OCaml representation of a Megabus route list *)
+(** The abstract type representing the OCaml representation of a Megabus route
+    list *)
 
 val from_json : Yojson.Basic.t -> t
+(** [from_json j] returns a parsed JSON of type t from a Yojson object. This
+    specifically maps Megabus output to the return type that is needed. *)
+
 val get_price : t -> float list
+(** [get_price j] returns a float list of prices of all bus routes on a given
+    output from Megabus. *)
+
 val get_info : t -> string list list
+(** [get_info j] returns a list of list of outputs which indicate origin,
+    destination, departure, arrival, and price. This information is required for
+    user display in the terminal *)
+
 val parse_json : Yojson.Basic.t -> query -> vehicle
+(** [parse_json j q] converts a JSON object to a type that can be later merged
+    with other bus companies. This allows us to begin merging with the code from
+    [bus.ml] *)

@@ -171,26 +171,32 @@ let execute () =
       ourbus_destination ourbus_origin
   in
   let _ = Ourbus.run_parser ourbus_query in
-  Megabus.run megabus_query
+  if megabus_origin = 0 || megabus_destination = 0 then ()
+  else Megabus.run megabus_query
 
 (* Ourbus Handler *)
 let rec output_handler () =
   execute ();
   ANSITerminal.print_string [ ANSITerminal.cyan ]
     "Here are some potential bus routes sorted by price. Take a look!\n";
-  let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json") in
-  let _ = Yojson.Basic.from_file (data_dir_prefix ^ "ourbus.json") in
-  let megabus_info = Megabus.get_info (Megabus.from_json megabus) in
-  (* let ourbus_info = Ourbus.get_info (Ourbus.from_json ourbus) in *)
   print_endline "\torigin\tdestination\tdate\tdeparture\tarrival\tprice";
-  print_endline "Megabus:";
-  List.iter
-    (fun x ->
-      List.iter (printf "\t%s") x;
-      printf "\n")
-    (List.sort compare megabus_info);
+  try
+    let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json") in
+    let megabus_info = Megabus.get_info (Megabus.from_json megabus) in
+    print_endline "Megabus:";
+    List.iter
+      (fun x ->
+        List.iter (printf "\t%s") x;
+        printf "\n")
+      (List.sort compare megabus_info)
+  with _ ->
+    print_endline "Megabus Query Failed";
+  try 
+  let ourbus = Yojson.Basic.from_file (data_dir_prefix ^ "ourbus.json") in
+  let ourbus_info = Ourbus.get_info (Ourbus.from_json ourbus) in
   print_endline "Ourbus:"
-
+  with _ ->
+    print_endline "Ourbus Query Failed"
 
 (** [main ()] prompts for Expedia to start*)
 let main () =
