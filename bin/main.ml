@@ -179,7 +179,7 @@ let rec output_handler () =
   execute ();
   ANSITerminal.print_string [ ANSITerminal.cyan ]
     "Here are some potential bus routes sorted by price. Take a look!\n";
-  print_endline "\torigin\tdestination\tdate\tdeparture\tarrival\tprice";
+  print_endline "\torigin\t\tdestination\tdate\t\tdepart  arrive\tprice\tnotes";
   try
     let megabus = Yojson.Basic.from_file (data_dir_prefix ^ "megabus.json") in
     let megabus_info = Megabus.get_info (Megabus.from_json megabus) in
